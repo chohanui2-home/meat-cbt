@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8f1d1d">
+<title>식육처리기능사 기출·모의고사 CBT</title>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#ffffff; --line:#e3e6eb; --ink:#15181e; --muted:#6b7280;
+  --brand:#9f1d20; --brand-2:#7d1417; --brand-soft:#fdf2f2;
+  --ok:#0f766e; --ok-soft:#ecfdf7; --warn:#b45309; --bad:#c62828;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.06);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.55; font-size:15px;
+  word-break:keep-all; overflow-wrap:anywhere;
+}
+h1,h2,h3,h4,p{margin:0}
+button{font:inherit;color:inherit}
+.wrap{width:100%;max-width:1020px;margin:0 auto;padding:0 14px}
+header.app{background:linear-gradient(135deg,#8f1d1d 0%,#5f1013 100%);color:#fff}
+.head{display:flex;align-items:center;gap:12px;padding:16px 0 14px}
+.mark{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 42px}
+.head h1{font-size:19px;font-weight:800;letter-spacing:-.3px}
+.head p{font-size:12px;color:rgba(255,255,255,.78);margin-top:1px}
+nav.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:12px}
+nav.tabs button{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);color:#f6e9e9;
+  padding:8px 12px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;min-height:36px;
+}
+nav.tabs button.active{background:#fff;color:var(--brand-2);border-color:#fff}
+main{padding:18px 0 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.card+.card{margin-top:14px}
+.hero{background:linear-gradient(135deg,#fff 0%,#fff7f6 100%);border:1px solid #f0d9d9}
+.hero h2{font-size:24px;font-weight:800;letter-spacing:-.6px;margin:8px 0 6px}
+.hero .lead{color:#4b5563;font-size:14px}
+.pill{display:inline-block;background:var(--brand-soft);color:var(--brand);border:1px solid #f3d3d3;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.stat{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat .k{font-size:12px;color:var(--muted);font-weight:600}
+.stat .v{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-top:2px}
+.stat .v small{font-size:12px;font-weight:600;color:var(--muted);margin-left:2px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#eef0f4;border:1px solid transparent;border-radius:11px;padding:11px 16px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand-2)}
+.btn.ghost{background:#fff;border-color:var(--line)}
+.btn.ok{background:var(--ok);color:#fff}
+.btn.flagged{background:#b45309;color:#fff;border-color:#b45309}
+.btn.sm{padding:7px 11px;font-size:13px;min-height:34px;border-radius:9px;font-weight:600}
+.btn.wide{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.subj{border-left:4px solid var(--brand);padding:14px 16px;background:#fff;border-radius:12px;border:1px solid var(--line);border-left-width:4px}
+.subj h3{font-size:16px;font-weight:800}
+.subj p{font-size:13px;color:var(--muted);margin-top:3px}
+.subj .n{font-size:12px;color:var(--brand);font-weight:700;margin-top:8px}
+.section-title{font-size:17px;font-weight:800;margin:20px 0 10px;letter-spacing:-.3px}
+.muted{color:var(--muted);font-size:13px}
+.chip{display:inline-block;background:#f1f3f7;color:#374151;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.bad{background:#fdecec;color:var(--bad)}
+.chip.warn{background:#fff7e6;color:var(--warn)}
+/* exam bar */
+.exambar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 2px 10px rgba(16,24,40,.06);margin-bottom:12px}
+.exambar .prog{font-size:13px;font-weight:700;color:#374151}
+.exambar .spacer{flex:1 1 auto}
+#timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:19px;letter-spacing:.5px;color:var(--brand)}
+#timer.warn{color:#c62828;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.45}}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.qmeta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);font-weight:600}
+.qmeta .no{background:var(--brand);color:#fff;border-radius:8px;padding:2px 8px;font-weight:800;font-size:12.5px}
+.qtext{font-size:17px;font-weight:700;line-height:1.5;margin:12px 0 14px;letter-spacing:-.2px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font-size:15px;line-height:1.45;cursor:pointer;min-height:50px}
+.opt:hover{border-color:#c9ced8;background:#fbfbfc}
+.opt .num{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#eef0f4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-top:1px}
+.opt .txt{flex:1 1 auto}
+.opt.sel{border-color:var(--brand);background:var(--brand-soft)}
+.opt.sel .num{background:var(--brand);color:#fff}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.correct .num{background:var(--ok);color:#fff}
+.opt.wrong{border-color:#dc2626;background:#fef2f2}
+.opt.wrong .num{background:#dc2626;color:#fff}
+.opt .tag{font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.8);border:1px solid currentColor;white-space:nowrap;align-self:center}
+.qnav{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.qnav .btn{flex:1 1 120px}
+.exp{margin-top:14px;background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.65}
+.exp b{color:var(--ok)}
+.exp .ansline{font-weight:800;margin-bottom:4px;color:#111}
+.note{border:1px dashed #d9dde5;border-radius:10px;padding:10px 12px;font-size:13px;color:#4b5563;background:#fcfcfd}
+.omr{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px;margin-top:10px}
+.omr button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 0;font-size:12.5px;font-weight:700;color:#4b5563;cursor:pointer;position:relative;min-height:38px}
+.omr button.done{background:#e8f5f2;border-color:#9fd6cc;color:#0b5f58}
+.omr button.flag::after{content:"";position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:50%;background:#e0a800}
+.omr button.cur{outline:2px solid var(--brand);outline-offset:1px;color:var(--brand);font-weight:800}
+.omr button.done.cur{color:#0b5f58}
+.omrwrap{margin-top:12px}
+details.omrdetails summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--brand);padding:6px 0}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:middle}
+/* result */
+.scorebox{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.scorecircle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:8px solid #e5e7eb;flex:0 0 auto}
+.scorecircle.pass{border-color:#9fd6cc;color:var(--ok)}
+.scorecircle.fail{border-color:#f2b8b8;color:var(--bad)}
+.scorecircle .s{font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px}
+.scorecircle .l{font-size:12px;font-weight:700;margin-top:3px}
+.badge{display:inline-block;padding:5px 12px;border-radius:999px;font-weight:800;font-size:15px}
+.badge.pass{background:var(--ok);color:#fff}
+.badge.fail{background:#c62828;color:#fff}
+.bar{height:8px;border-radius:999px;background:#eef0f4;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;border-radius:999px;background:var(--ok)}
+.bar>i.low{background:#dc2626}
+.bar>i.mid{background:#d97706}
+.rowline{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;font-weight:700;padding:8px 0;border-bottom:1px dashed #eceef2}
+.rowline:last-child{border-bottom:0}
+.review{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.review+.review{margin-top:10px}
+.review .qq{font-weight:700;margin:8px 0 10px;font-size:15px}
+.review .mini{font-size:13.5px;padding:6px 10px;border-radius:8px;margin-top:5px;border:1px solid var(--line);display:flex;gap:8px}
+.review .mini.c{background:var(--ok-soft);border-color:#b9e3da}
+.review .mini.w{background:#fef2f2;border-color:#f6c7c7}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 14px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;min-height:36px}
+.filters button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.empty{text-align:center;padding:34px 14px;color:var(--muted);font-size:14px}
+.empty .big{font-size:30px;margin-bottom:8px}
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{position:relative;padding:6px 0 6px 22px;font-size:14px;line-height:1.6;border-bottom:1px dashed #eef0f3}
+ul.clean li:last-child{border-bottom:0}
+ul.clean li::before{content:"·";position:absolute;left:8px;color:var(--brand);font-weight:900}
+.check{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed #eef0f3;cursor:pointer}
+.check:last-child{border-bottom:0}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--brand);flex:0 0 20px}
+.check span{font-size:14px;line-height:1.5}
+.check input:checked+span{color:#9aa1ab;text-decoration:line-through}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px}
+.kv div{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:13px}
+.kv b{display:block;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:2px}
+/* modal */
+.overlay{position:fixed;inset:0;background:rgba(15,18,24,.55);display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
+.modal{background:#fff;border-radius:16px;max-width:420px;width:100%;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.modal h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.modal .mbody{font-size:14px;color:#374151;line-height:1.6}
+.mactions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.mactions .btn{flex:1 1 auto}
+footer{border-top:1px solid var(--line);background:#fff}
+footer .wrap{padding:16px 14px 24px;font-size:11.5px;color:#8a9099;line-height:1.7}
+.hr{height:1px;background:var(--line);margin:16px 0}
+.nowrap{white-space:nowrap}
+@media (max-width:520px){
+  .head h1{font-size:17px}
+  .hero h2{font-size:20px}
+  .card{padding:15px}
+  .qtext{font-size:16px}
+  .opt{font-size:14.5px;padding:11px 12px}
+  .scorecircle{width:104px;height:104px;border-width:7px}
+  .scorecircle .s{font-size:28px}
+}
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="wrap">
+    <div class="head">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M3.2 7.4h16.2c.9 0 1.6.7 1.6 1.6v3.4H4.6c-.8 0-1.4-.6-1.4-1.4V7.4z" opacity=".95"/><path d="M4.2 13.2h16.8l-3.4 5.1c-.3.5-.9.8-1.5.8H6.3c-1.2 0-2.1-1-2.1-2.1v-3.8z" opacity=".65"/><rect x="2.2" y="19.6" width="19.6" height="1.7" rx=".85" opacity=".9"/></svg></div>
+      <div>
+        <h1>식육처리기능사 기출·모의고사 CBT</h1>
+        <p>필기 60문항 · 60분 · 100점 만점 60점 이상 합격</p>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="주요 메뉴"></nav>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer>
+  <div class="wrap">
+    <strong>안내</strong> · 본 프로그램의 문항은 공개된 출제기준과 기출 경향을 바탕으로 학습용으로 자체 제작한 것이며, 실제 시험 문항과 동일하지 않습니다. 과목명·합격기준은 한국산업인력공단 큐넷 공고를 기준으로 하였고, 실기 평가 기준은 시행기관 공고를 확인하세요.<br>
+    학습 기록은 이 브라우저(localStorage)에만 저장되며 외부로 전송되지 않습니다.
+  </div>
+</footer>
+<div id="modalRoot"></div>
+<script>
+const QUESTIONS = [{"id":"intro-1","s":"intro","t":"도체등급","q":"소 도체의 육질등급 단계를 순서대로 옳게 나열한 것은?","o":["1++, 1+, 1, 2, 3","1+, 1, 2, 3, 등외","1, 2, 3, A, B","1++, 1+, 1, 2, 등외"],"a":0,"e":"소 육질등급은 1++, 1+, 1, 2, 3의 5단계이며 '등외'는 돼지 도체 등급에 있는 단계이다. 육량등급은 A·B·C 3단계로 육질과 별도로 판정한다."},{"id":"intro-2","s":"intro","t":"도체등급","q":"소 도체의 육량등급을 구성하는 단계로 옳은 것은?","o":["1, 2, 3","1+, 1, 2","상, 중, 하","A, B, C"],"a":3,"e":"육량등급은 A, B, C 3단계이다. 육질등급(1++~3)과 조합하여 '1++B'처럼 표기한다."},{"id":"intro-3","s":"intro","t":"도체등급","q":"근내지방도(BMS)에 대한 설명으로 가장 옳은 것은?","o":["1번에서 9번까지 9단계이며 숫자가 클수록 근내지방이 많다","A·B·C 3단계로 구분한다","육량등급 판정의 핵심 항목이다","1번이 가장 지방이 많고 9번이 가장 적다"],"a":0,"e":"BMS는 1~9번의 9단계로, 숫자가 클수록 등심 단면의 근내지방(마블링)이 많다. 1++는 8~9번, 1+는 6~7번 수준이다. BMS는 육량이 아니라 육질등급 항목이다."},{"id":"intro-4","s":"intro","t":"도체등급","q":"소 육량지수 산출에 직접 사용되지 않는 항목은?","o":["등심단면적","도체중","근내지방도","등지방두께"],"a":2,"e":"육량지수는 도체중, 등지방두께, 등심단면적으로 계산한다. 근내지방도는 육질등급 판정 항목이므로 육량지수와 무관하다."},{"id":"intro-5","s":"intro","t":"도체등급","q":"소 육질등급 판정 시 평가 항목으로 옳지 않은 것은?","o":["조직감","육색","근내지방도","등지방두께"],"a":3,"e":"육질등급은 근내지방도, 육색, 지방색, 조직감, 성숙도의 5개 항목으로 판정한다. 등지방두께는 육량등급 항목이다."},{"id":"intro-6","s":"intro","t":"도체등급","q":"소의 등심단면적과 등지방두께를 측정하는 부위로 가장 옳은 것은?","o":["제1~2경추 사이","제5~6흉추 사이","최후늑골과 제1요추 사이의 등심 단면","천골과 미추 사이"],"a":2,"e":"등심단면적과 등지방두께는 최후늑골(제13늑골)과 제1요추 사이를 절단한 등심 단면에서 측정한다. 등급판정의 기준점이 되는 위치이므로 정확히 기억해야 한다."},{"id":"intro-7","s":"intro","t":"도체등급","q":"소 도체 등급이 '1++B'로 표시되었을 때의 의미로 옳은 것은?","o":["근내지방도 1번, 육량 B등급","육질 1++, 육량 B등급","육량 1++, 육질 B등급","육질 1+, 육량 2B등급"],"a":1,"e":"앞의 기호가 육질등급, 뒤의 문자가 육량등급이다. 따라서 육질 1++에 육량 B등급이라는 뜻이다."},{"id":"intro-8","s":"intro","t":"도체등급","q":"돼지 도체 등급 단계를 옳게 나열한 것은?","o":["A, B, C, 등외","1, 2, 3, 4","1++, 1+, 1, 2","1+, 1, 2, 등외"],"a":3,"e":"돼지 도체는 1+, 1, 2, 등외의 4단계로 판정한다. 소와 달리 육량·육질을 분리하지 않고 도체중과 등지방두께로 종합 판정한다."},{"id":"intro-9","s":"intro","t":"도체등급","q":"돼지 도체 등급판정의 주된 판정 항목 두 가지는?","o":["근내지방도와 육색","등심단면적과 성숙도","지방색과 조직감","도체중과 등지방두께"],"a":3,"e":"돼지 도체는 도체중과 등지방두께로 등급을 판정한다. 근내지방도·육색 등은 소의 육질등급 항목이다."},{"id":"intro-10","s":"intro","t":"도체등급","q":"돼지 도체 등급판정에서 탕박도체와 박피도체에 대한 설명으로 옳은 것은?","o":["탕박도체는 등급판정 대상이 아니다","도체중과 등지방두께의 판정 기준이 각각 다르게 적용된다","두 도체 모두 동일한 기준을 적용한다","박피도체는 도체중만으로 판정한다"],"a":1,"e":"탕박도체는 털을 뜨거운 물에 익혀 제거하고, 박피도체는 껍질을 벗긴다. 껍질과 지방층 상태가 달라 도체중·등지방두께 기준을 구분해 적용한다."},{"id":"intro-11","s":"intro","t":"도체등급","q":"돼지 도체가 '등외'로 판정되는 사유로 가장 거리가 먼 것은?","o":["근내지방도가 9번으로 매우 높은 경우","도체중이 기준에 미달하는 경우","도체에 심한 오염이나 질병의 흔적이 있는 경우","등지방두께가 기준에 미달하는 경우"],"a":0,"e":"돼지 등급에는 근내지방도 항목이 없다. 도체중·등지방두께가 기준을 벗어나거나 오염·질병 흔적이 있으면 등외가 된다."},{"id":"intro-12","s":"intro","t":"부위분할","q":"소의 10대분할 부위에 해당하지 않는 것은?","o":["우둔","목심","채끝","삼겹"],"a":3,"e":"삼겹은 돼지 부위 명칭이다. 소 10대분할은 목심, 앞다리, 갈비, 등심, 채끝, 안심, 양지, 사태, 꾸리, 우둔이다."},{"id":"intro-13","s":"intro","t":"부위분할","q":"소 10대분할 부위를 모두 옳게 묶은 것은?","o":["목심·앞다리·갈비·등심·채끝·안심·양지·사태·족발·우둔","안심·등심·채끝·목심·앞다리·삼겹·갈비·양지·사태·우둔","목심·삼겹·등심·안심·갈비·뒷다리·앞다리·양지·사태·우둔","목심·앞다리·갈비·등심·채끝·안심·양지·사태·꾸리·우둔"],"a":3,"e":"소 10대분할은 목심, 앞다리, 갈비, 등심, 채끝, 안심, 양지, 사태, 꾸리, 우둔이다. 삼겹·뒷다리·족발은 돼지 부위이다."},{"id":"intro-14","s":"intro","t":"부위분할","q":"소 10대분할 부위를 세분화한 소분할 부위의 수는?","o":["10개","25개","60개","39개"],"a":3,"e":"소는 10대분할을 39개 소분할로, 돼지는 7대분할을 25개 소분할로 세분한다."},{"id":"intro-15","s":"intro","t":"부위분할","q":"돼지 7대분할 부위에 해당하지 않는 것은?","o":["사태","목심","뒷다리","삼겹"],"a":0,"e":"돼지 7대분할은 목심, 앞다리, 등심, 삼겹, 갈비, 뒷다리, 안심이다. 사태는 소 부위이다."},{"id":"intro-16","s":"intro","t":"부위분할","q":"돼지 7대분할 부위를 옳게 묶은 것은?","o":["목심·앞다리·등심·삼겹·갈비·뒷다리·안심","목심·앞다리·등심·삼겹·갈비·우둔·안심","목심·앞다리·등심·삼겹·양지·뒷다리·안심","목심·앞다리·채끝·삼겹·갈비·뒷다리·안심"],"a":0,"e":"돼지는 목심, 앞다리, 등심, 삼겹, 갈비, 뒷다리, 안심의 7대분할이다. 우둔·채끝·양지는 소 부위이다."},{"id":"intro-17","s":"intro","t":"부위특성","q":"소의 '안심'에 대한 설명으로 가장 옳은 것은?","o":["목 부위로 결이 거칠고 운동량이 많은 부위이다","다리 아래쪽으로 힘줄이 많은 부위이다","허리 안쪽에 위치한 대요근으로 도체에서 가장 연한 부위이다","갈비뼈 사이에 위치하며 지방이 많은 부위이다"],"a":2,"e":"안심은 허리 안쪽의 대요근으로 운동량이 적어 가장 연하며 스테이크·로스트에 적합하다. 근섬유가 가늘고 결합조직이 적다."},{"id":"intro-18","s":"intro","t":"부위특성","q":"소의 '등심'을 구성하는 대표적인 근육은?","o":["대요근","전경골근","배최장근","반건양근"],"a":2,"e":"등심은 배최장근(Longissimus dorsi)이 주를 이루며 등지방과 함께 등급판정의 기준 단면이 된다. 대요근은 안심이다."},{"id":"intro-19","s":"intro","t":"부위특성","q":"소의 '사태' 부위의 특성과 용도로 가장 옳은 것은?","o":["운동량이 적어 육회·스테이크에 적합하다","다리 아래쪽으로 힘줄과 결합조직이 많아 장시간 가열하는 수육·국거리에 적합하다","결이 가늘어 생식용으로만 사용한다","지방이 많아 구이에 적합하다"],"a":1,"e":"사태는 앞·뒤 다리의 아래쪽으로 힘줄(콜라겐)이 많아 질기지만, 오래 끓이면 젤라틴화되어 연해진다. 수육·국거리·장조림에 쓴다."},{"id":"intro-20","s":"intro","t":"부위특성","q":"소의 '우둔' 부위의 용도로 가장 적합한 것은?","o":["갈비찜","수육·곰탕","육회·불고기·장조림","돈가스"],"a":2,"e":"우둔은 엉덩이 부위로 지방이 적고 결이 곱아 육회·불고기·장조림에 적합하다. 갈비찜은 갈비, 수육은 사태·양지가 적합하다."},{"id":"intro-21","s":"intro","t":"부위특성","q":"소의 '양지' 부위에 대한 설명으로 옳은 것은?","o":["가슴 부위로 결합조직이 많아 국거리로 주로 이용된다","목 부위로 불고기용으로만 쓰인다","허리 안쪽의 가장 연한 부위이다","등심 뒤쪽의 스테이크용 부위이다"],"a":0,"e":"양지는 가슴 부위로 근간지방과 결합조직이 섞여 국거리·곰탕용으로 쓰인다. 오래 끓일수록 국물 맛이 좋아진다."},{"id":"intro-22","s":"intro","t":"부위특성","q":"소의 '채끝'에 대한 설명으로 가장 옳은 것은?","o":["머리와 목을 연결하는 부위이다","등심의 뒤쪽에 이어지는 부위로 스테이크·구이에 적합하다","족부위로 힘줄이 많다","갈비뼈 아래 복부에 위치한다"],"a":1,"e":"채끝은 등심 뒤쪽(요추부)에 위치하며 근내지방이 잘 발달해 스테이크·구이용으로 인기가 높다."},{"id":"intro-23","s":"intro","t":"부위특성","q":"소의 '목심' 부위 용도로 가장 적합한 것은?","o":["불고기·장조림·국거리","돈가스","베이컨","스테이크"],"a":0,"e":"목심은 운동량이 많은 목 부위로 결이 거칠고 지방이 섞여 있어 불고기·장조림·국거리에 적합하다."},{"id":"intro-24","s":"intro","t":"부위특성","q":"돼지의 '삼겹' 부위 위치로 옳은 것은?","o":["넓적다리 부위","갈비뼈 아래의 배 부위","목에서 어깨에 이르는 부위","등 쪽의 등심 부위"],"a":1,"e":"삼겹살은 갈비뼈 아래 배 부위로 지방과 살이 층을 이루어 '삼겹'이라 한다. 구이용으로 가장 많이 소비된다."},{"id":"intro-25","s":"intro","t":"부위특성","q":"돼지의 '목심' 부위 용도로 가장 적합한 것은?","o":["족발","베이컨","불고기·주물럭","돈가스"],"a":2,"e":"돼지 목심은 지방이 적당히 섞여 불고기·주물럭에 적합하다. 베이컨은 삼겹, 돈가스는 등심, 족발은 족 부위를 이용한다."},{"id":"intro-26","s":"intro","t":"부위특성","q":"돼지의 '뒷다리'를 주원료로 하는 육제품은?","o":["돈가스","베이컨","햄","삼겹살 구이"],"a":2,"e":"뒷다리(후지)는 살코기 비율이 높아 햄의 주원료로 쓰인다. 베이컨은 삼겹살, 돈가스는 등심을 이용한다."},{"id":"intro-27","s":"intro","t":"부위특성","q":"돼지 부위 중 가장 연하여 '안심'이라 불리는 부위의 위치는?","o":["배 부위","목 부위","허리 안쪽의 대요근 부위","족 부위"],"a":2,"e":"돼지 안심도 허리 안쪽의 대요근으로 운동량이 적어 가장 연하다. 소 안심과 같은 근육이다."},{"id":"intro-28","s":"intro","t":"부위특성","q":"소의 '도가니'에 대한 설명으로 옳은 것은?","o":["꼬리 끝의 살코기이다","무릎 관절 부위의 힘줄로 콜라겐이 많아 오래 끓여 먹는다","간과 연결된 부위이다","등심 안쪽의 지방 덩어리이다"],"a":1,"e":"도가니는 무릎 관절 부위의 힘줄(건)로 콜라겐이 풍부해 장시간 가열해야 연해진다. 주로 탕·찜용으로 이용한다."},{"id":"intro-29","s":"intro","t":"정형","q":"근육의 결(근섬유) 방향과 관련한 썰기 방법으로 가장 옳은 것은?","o":["결과 무관하게 두껍게 썰수록 연하다","근섬유 방향과 나란히 썰어야 연하다","사선으로만 썰어야 한다","근섬유 방향과 직각(수직)으로 썰어야 연하게 씹힌다"],"a":3,"e":"근섬유와 직각으로 썰면 씹을 때 근섬유 길이가 짧아져 연하게 느껴진다. 결 방향을 무시하고 썰면 질겨진다."},{"id":"intro-30","s":"intro","t":"정형","q":"도체중량 400kg인 소에서 정육 260kg을 얻었을 때 정육률은?","o":["60%","70%","75%","65%"],"a":3,"e":"정육률 = 정육중량 ÷ 도체중량 × 100 = 260 ÷ 400 × 100 = 65%이다."},{"id":"intro-31","s":"intro","t":"정형","q":"지육 60kg에서 정육 42kg을 생산했을 때 수율은?","o":["75%","80%","70%","60%"],"a":2,"e":"수율 = 42 ÷ 60 × 100 = 70%이다. 정육률과 같은 계산 원리로, 원료 대비 얻어진 정육의 비율을 뜻한다."},{"id":"intro-32","s":"intro","t":"해부","q":"소의 척추를 구성하는 흉추와 요추의 개수로 옳은 것은?","o":["흉추 14개, 요추 7개","흉추 12개, 요추 5개","흉추 13개, 요추 5개","흉추 13개, 요추 6개"],"a":3,"e":"소는 경추 7, 흉추 13, 요추 6, 천추 5개이다. 흉추에 갈비뼈가 붙어 갈비 부위가 형성된다."},{"id":"intro-33","s":"intro","t":"해부","q":"근육의 구조에 대한 설명으로 옳은 것은?","o":["근섬유는 콜라겐으로만 이루어진다","근절은 지방 조직의 단위이다","근원섬유는 액틴과 미오신으로 이루어지며 근절이 수축 단위이다","근육은 모두 평활근으로 구성된다"],"a":2,"e":"골격근은 근섬유 다발로 되어 있고, 근섬유 안의 근원섬유는 액틴(가는 필라멘트)과 미오신(굵은 필라멘트)으로 구성된다. 근절(sarcomere)이 수축의 기본 단위이다."},{"id":"intro-34","s":"intro","t":"해부","q":"식육의 결합조직 주성분인 콜라겐에 대한 설명으로 옳은 것은?","o":["가열해도 전혀 변하지 않는다","가열하면 젤라틴으로 변해 연해진다","지방산의 일종이다","비타민의 일종이다"],"a":1,"e":"콜라겐은 가열 시 젤라틴으로 변해 부드러워지므로 사태·양지 같은 부위는 장시간 가열한다. 엘라스틴은 가열에도 잘 변하지 않아 더 질기다."},{"id":"intro-35","s":"intro","t":"해부","q":"식육의 지방 조직에 대한 설명으로 옳은 것은?","o":["불포화지방산이 많을수록 융점이 높아진다","중성지방(트리글리세리드)이 주성분이며 지방산 조성에 따라 융점이 달라진다","근내지방은 풍미와 무관하다","주성분은 단백질이다"],"a":1,"e":"지방은 중성지방이 주성분이며 불포화지방산이 많을수록 융점이 낮아진다. 근내지방(마블링)은 풍미·다즙성·연도에 크게 기여한다."},{"id":"intro-36","s":"intro","t":"부위특성","q":"소의 '갈비' 부위에 대한 설명으로 가장 옳은 것은?","o":["갈비뼈와 그 사이의 살로 갈비찜·구이에 이용된다","허리 안쪽의 가장 연한 부위이다","다리 아래쪽의 힘줄 부위이다","머리 부위의 살코기이다"],"a":0,"e":"갈비는 흉추에 붙은 갈비뼈와 주변 근육으로, 뼈와 살이 함께 있어 갈비찜·구이용으로 쓰인다. 소분할 시 갈비살·참갈비 등으로 나뉜다."},{"id":"hygiene-1","s":"hygiene","t":"세균","q":"살모넬라균에 대한 설명으로 옳은 것은?","o":["그람음성 간균으로 아포를 형성하지 않으며 통성혐기성이다","호염성 세균으로 바닷물에서만 증식한다","그람양성 구균으로 아포를 형성한다","편성혐기성으로 산소가 없어야만 증식한다"],"a":0,"e":"살모넬라는 그람음성 간균, 아포 비형성, 통성혐기성으로 60℃ 이상 가열에 약하다. 포도상구균과 혼동하기 쉬우므로 그람 염색성과 아포 형성 여부를 구분해 기억한다."},{"id":"hygiene-2","s":"hygiene","t":"세균","q":"살모넬라 식중독의 주요 원인식품으로 가장 옳은 것은?","o":["유제품 중 치즈","달걀 및 가금육","통조림 식품","절인 생선"],"a":1,"e":"살모넬라는 달걀·가금육에서 많이 검출되며, 충분한 가열과 냉장 보관, 교차오염 방지가 예방의 핵심이다. 통조림은 보툴리누스와 관련이 깊다."},{"id":"hygiene-3","s":"hygiene","t":"세균","q":"황색포도상구균 식중독의 특징으로 가장 옳은 것은?","o":["독소가 열에 매우 약해 60℃에서 파괴된다","장독소(엔테로톡신)가 내열성이 강해 100℃ 30분 가열로도 파괴되지 않는다","해산물에서만 발생한다","아포를 형성해 120℃에서만 사멸한다"],"a":1,"e":"황색포도상구균은 아포를 형성하지 않지만 장독소가 내열성이 매우 강해 재가열로도 독소가 남는다. 따라서 손·화농성 상처로부터의 오염 방지가 중요하다."},{"id":"hygiene-4","s":"hygiene","t":"세균","q":"황색포도상구균 오염원으로 가장 거리가 먼 것은?","o":["토양 중의 아포","피부의 화농성 질환","비말(재채기·기침)","화농성 상처를 가진 작업자의 손"],"a":0,"e":"황색포도상구균은 사람의 피부·코·화농성 상처에 상재하며 손과 비말을 통해 식품을 오염시킨다. 토양 아포는 보툴리누스·퍼프린젠스와 관련된다."},{"id":"hygiene-5","s":"hygiene","t":"세균","q":"보툴리누스균에 대한 설명으로 옳은 것은?","o":["그람음성 구균으로 아포를 형성하지 않는다","편성혐기성의 아포 형성 간균으로 신경독을 생성한다","통성혐기성으로 산소가 있으면 반드시 사멸한다","호염성으로 해산물에서만 검출된다"],"a":1,"e":"보툴리누스균은 편성혐기성 간균으로 아포를 형성하고, 생성된 보툴리눔 독소가 신경을 마비시킨다. 진공포장·통조림 등 산소가 차단된 환경이 위험하다."},{"id":"hygiene-6","s":"hygiene","t":"세균","q":"보툴리누스 중독의 대표적인 증상은?","o":["구강 내 수포와 궤양","발열과 두드러기","혈변과 심한 복통","복시, 연하곤란, 호흡곤란 등 신경 마비 증상"],"a":3,"e":"보툴리눔 독소는 신경 말단을 마비시켜 복시, 안검하수, 연하곤란, 호흡곤란을 일으킨다. 설사·구토 등 위장 증상이 두드러지는 것과 구분해야 한다."},{"id":"hygiene-7","s":"hygiene","t":"세균","q":"보툴리누스균 증식을 억제하는 대표적인 식품첨가물은?","o":["아질산염","구연산철","이산화규소","탄산칼슘"],"a":0,"e":"아질산염은 발색과 함께 보툴리누스균의 증식·독소 생성을 억제한다. 염지육 제조에서 아질산염이 필수적인 이유 중 하나이다."},{"id":"hygiene-8","s":"hygiene","t":"세균","q":"장염비브리오균의 특징으로 옳은 것은?","o":["주로 육류에서 검출된다","호염성(약 3% 염분)으로 해산물에서 주로 검출된다","아포를 형성해 100℃에서도 사멸하지 않는다","염분이 없는 곳에서만 증식한다"],"a":1,"e":"장염비브리오는 염분을 필요로 하는 호염성 세균으로 어패류·오징어 등 해산물이 주요 원인식품이다. 여름철 해산물 섭취 시 주의한다."},{"id":"hygiene-9","s":"hygiene","t":"세균","q":"리스테리아 모노시토게네스에 대한 설명으로 가장 옳은 것은?","o":["60℃ 이상에서만 증식한다","아포를 형성하는 그람음성 간균이다","냉장 온도에서도 증식할 수 있어 냉장 보관만으로는 안전하지 않다","주로 건조식품에서 문제된다"],"a":2,"e":"리스테리아는 저온에서도 증식하는 저온성 세균으로 임산부·노약자에게 특히 위험하다. 냉장 유통 식품이라도 가열 조리와 유통기한 준수가 필요하다."},{"id":"hygiene-10","s":"hygiene","t":"세균","q":"장출혈성 대장균 O157:H7 감염의 특징으로 옳은 것은?","o":["호염성 세균이다","출혈성 대장염과 용혈성요독증후군(HUS)을 일으킬 수 있다","주로 신경 마비를 일으킨다","아포를 형성해 통조림에서 문제된다"],"a":1,"e":"O157:H7은 베로독소를 생성해 출혈성 대장염, 심하면 용혈성요독증후군을 일으킨다. 덜 익힌 분쇄육·오염된 물이 주요 원인이다."},{"id":"hygiene-11","s":"hygiene","t":"세균","q":"캠필로박터균의 특징으로 옳은 것은?","o":["편성호기성으로 토양에서만 검출된다","아포를 형성하는 그람양성 간균이다","미호기성으로 닭고기 등 가금육에서 주로 검출된다","해산물에서만 검출되는 호염성 세균이다"],"a":2,"e":"캠필로박터는 산소 농도가 낮은 미호기성 환경을 좋아하며 닭고기·닭 내장이 주요 오염원이다. 충분한 가열과 교차오염 방지가 중요하다."},{"id":"hygiene-12","s":"hygiene","t":"세균","q":"클로스트리디움 퍼프린젠스에 대한 설명으로 옳은 것은?","o":["냉장 온도에서 가장 잘 증식한다","호기성 세균으로 표면에서만 증식한다","혐기성 아포 형성균으로 산소가 없는 환경에서 증식한다","아포를 형성하지 않는 그람음성 구균이다"],"a":2,"e":"퍼프린젠스는 혐기성 아포균으로 대량 조리 후 식혀 두는 과정에서 증식한다. 아포는 내열성이 있어 충분한 가열과 신속한 냉각이 필요하다."},{"id":"hygiene-13","s":"hygiene","t":"세균","q":"바실러스 세레우스 식중독과 가장 관련이 깊은 것은?","o":["통조림","실온에 오래 둔 밥·곡류 가공품","소금에 절인 생선","분유"],"a":1,"e":"세레우스균은 아포 형성균으로 밥·파스타 등 전분질 식품을 실온에 오래 두면 증식한다. 취사 후 신속히 식히거나 보온·냉장하는 것이 예방법이다."},{"id":"hygiene-14","s":"hygiene","t":"곰팡이","q":"곰팡이가 생성하는 독소 중 대표적인 것은?","o":["베로독소","보툴리눔 독소","아플라톡신","장독소"],"a":2,"e":"아플라톡신은 아스페르길루스 플라부스 등이 생성하는 곰팡이 독소로 간 독성이 강하다. 보툴리눔 독소·장독소·베로독소는 세균이 생성한다."},{"id":"hygiene-15","s":"hygiene","t":"인수공통","q":"다음 중 인수공통전염병이 아닌 것은?","o":["탄저","브루셀라병","구제역","결핵"],"a":2,"e":"구제역은 가축전염병이지만 사람에게 감염되는 인수공통전염병으로 분류하지 않는다. 탄저·브루셀라병·결핵·돈단독·광견병은 인수공통전염병이다."},{"id":"hygiene-16","s":"hygiene","t":"인수공통","q":"탄저병에 대한 설명으로 옳은 것은?","o":["모기에 의해 전파된다","아포를 형성하지 않아 쉽게 사멸한다","아포를 형성해 토양에서 오래 생존하며 피부탄저·폐탄저를 일으킨다","사람에게는 전혀 감염되지 않는다"],"a":2,"e":"탄저균은 아포를 형성해 토양에 장기간 생존하며, 감염동물의 사체·가죽·털을 통해 사람에 감염된다. 아포는 소독제에 강하므로 소각 등 엄격한 처리가 필요하다."},{"id":"hygiene-17","s":"hygiene","t":"인수공통","q":"브루셀라병의 주요 감염 경로로 가장 옳은 것은?","o":["공기 중 비말만으로 감염","오염된 우유나 생유의 섭취, 병원균과의 접촉","모기 물림","익힌 고기 섭취"],"a":1,"e":"브루셀라는 생유·유제품 섭취나 오염된 분만물·사체 접촉으로 감염되며 파상열(오한과 발열의 반복)이 특징이다. 우유의 충분한 가열이 예방법이다."},{"id":"hygiene-18","s":"hygiene","t":"인수공통","q":"소 결핵병의 진단과 관련된 검사로 옳은 것은?","o":["VBN 측정","간이 콜레스테롤 검사","투베르쿨린 검사","ATP 발광법"],"a":2,"e":"소 결핵은 투베르쿨린 피내 접종 후 반응으로 검사한다. 결핵성 우유 섭취로 사람에 감염될 수 있어 저온살균이 중요하다."},{"id":"hygiene-19","s":"hygiene","t":"인수공통","q":"돈단독에 대한 설명으로 옳은 것은?","o":["곰팡이에 의해 발생한다","닭에서만 발생하는 바이러스병이다","사람이 반드시 감염되는 질병이다","돼지에서 발생하는 세균성 전염병으로 급성형은 패혈증을 일으킨다"],"a":3,"e":"돈단독은 돼지에 발생하는 세균성(돈단독균) 전염병으로 급성 패혈증·피부에 붉은 반점을 일으킨다. 사람의 감염은 드물지만 인수공통전염병으로 분류한다."},{"id":"hygiene-20","s":"hygiene","t":"인수공통","q":"구제역에 대한 설명으로 옳은 것은?","o":["세균성 질병으로 항생제로 치료한다","바이러스성 질병으로 발굽·입 주위에 수포가 생기며 전염력이 매우 강하다","여름철에만 발생한다","사람에게 흔히 감염되는 질병이다"],"a":1,"e":"구제역은 전염력이 매우 강한 바이러스성 가축전염병으로 소·돼지·양 등 우제류에 수포를 일으킨다. 발생 시 살처분·이동제한 등 방역 조치가 이루어진다."},{"id":"hygiene-21","s":"hygiene","t":"부패판정","q":"축산물의 부패 판정 지표인 VBN(휘발성염기질소)의 부패 기준으로 옳은 것은?","o":["50mg% 초과","20mg% 초과","100mg% 초과","5mg% 초과"],"a":1,"e":"VBN은 단백질 분해로 생긴 암모니아 등 휘발성 염기질소로, 신선육은 보통 5~10mg%이며 20mg%를 초과하면 부패로 판정한다."},{"id":"hygiene-22","s":"hygiene","t":"부패판정","q":"식육이 부패할 때 pH가 변하는 양상으로 옳은 것은?","o":["탄수화물 분해로 pH가 계속 낮아진다","pH가 4 이하로 급격히 낮아진다","pH는 전혀 변하지 않는다","단백질 분해로 염기성 물질이 생겨 pH가 상승한다"],"a":3,"e":"부패 시 단백질이 분해되어 암모니아·아민 등 염기성 물질이 생성되므로 pH가 상승하고, 이는 신선육의 낮은 pH(5.4~5.6)와 대비된다."},{"id":"hygiene-23","s":"hygiene","t":"부패판정","q":"신선육의 부패 판정 방법으로 적합하지 않은 것은?","o":["세균수 검사","VBN 측정","관능검사","근내지방도 측정"],"a":3,"e":"부패 판정은 관능검사(색·냄새·점질), VBN, pH, 세균수 등으로 한다. 근내지방도는 등급판정 항목으로 부패와 무관하다."},{"id":"hygiene-24","s":"hygiene","t":"HACCP","q":"HACCP의 7원칙 중 첫 번째 원칙은?","o":["CCP 모니터링","기록 유지","위해요소 분석 실시","검증 절차 수립"],"a":2,"e":"HACCP 7원칙은 위해요소 분석 → CCP 결정 → 관리기준 설정 → 모니터링 → 시정조치 → 검증 → 기록유지의 순서이다. 위해요소 분석이 출발점이다."},{"id":"hygiene-25","s":"hygiene","t":"HACCP","q":"CCP(중요관리점)에 대한 설명으로 가장 옳은 것은?","o":["제품의 가격을 결정하는 기준","작업자의 근무시간 관리 지점","위해요소가 전혀 없는 작업장","위해요소를 예방·제거·허용수준까지 감소시킬 수 있는 관리점"],"a":3,"e":"CCP는 식품 안전상 위해를 예방·제거하거나 허용수준 이하로 감소시킬 수 있는 공정 단계이다. 온도·시간 등 관리기준을 설정해 모니터링한다."},{"id":"hygiene-26","s":"hygiene","t":"HACCP","q":"HACCP 적용에 앞서 갖추어야 하는 선행요건으로 가장 거리가 먼 것은?","o":["시설·설비의 위생 관리","방충·방서 관리","제품 광고 및 판촉 계획","작업자 개인 위생 관리"],"a":2,"e":"선행요건은 시설·설비 위생, 개인 위생, 세척·소독, 방충·방서, 교육 등 기본 위생 관리이다. 광고·판촉은 식품안전과 무관하다."},{"id":"hygiene-27","s":"hygiene","t":"위생관리","q":"식육 작업장에서 사용하는 차아염소산나트륨 용액의 주된 목적은?","o":["살균·소독","보수력 증대","지방의 산화 방지","육색 발색"],"a":0,"e":"차아염소산나트륨은 염소계 살균·소독제로 기구·시설 소독에 쓰인다. 발색은 아질산염, 보수력은 인산염의 역할이다."},{"id":"hygiene-28","s":"hygiene","t":"위생관리","q":"손 소독에 가장 적합한 것은?","o":["순수한 물","70% 에탄올","10% 소금물","100% 글리세린"],"a":1,"e":"70% 정도의 에탄올이 단백질 응고와 침투력이 균형을 이루어 소독 효과가 크다. 100% 에탄올은 오히려 순간 응고로 효과가 떨어진다."},{"id":"hygiene-29","s":"hygiene","t":"위생관리","q":"세척과 소독의 순서로 옳은 것은?","o":["소독만 하면 세척은 필요 없다","세척으로 오물을 제거한 후 소독한다","세척과 소독은 동시에 해야 한다","소독한 후 세척한다"],"a":1,"e":"유기물이 남으면 소독제 효과가 떨어지므로 반드시 세척으로 오물을 제거한 뒤 소독한다. 세척과 소독은 목적이 다른 별개의 공정이다."},{"id":"hygiene-30","s":"hygiene","t":"검사","q":"도축 전 생체검사(계류검사)의 주된 목적은?","o":["도체중을 계량하기 위해","육색을 측정하기 위해","도체 등급을 미리 판정하기 위해","질병·이상 가축을 조기에 발견해 도축을 제한하기 위해"],"a":3,"e":"계류검사는 도축 전 가축의 건강 상태를 확인해 전염병·이상 가축을 가려내는 검사이다. 등급·계량은 도축 후 공정이다."},{"id":"hygiene-31","s":"hygiene","t":"검사","q":"도축 후 내장 적출 단계에서 실시하는 검사는?","o":["생체검사","수입검사","해체검사","계류검사"],"a":2,"e":"해체검사는 내장 적출 후 장기와 도체를 검사하는 도축 후 검사이다. 계류검사·생체검사는 도축 전 검사이다."},{"id":"hygiene-32","s":"hygiene","t":"검사","q":"잔류물질검사의 대상으로 가장 거리가 먼 것은?","o":["합성항균제","중금속","항생제","도체의 육량지수"],"a":3,"e":"잔류물질검사는 항생제·합성항균제·호르몬·중금속·농약 등 잔류 유해물질을 검사한다. 육량지수는 등급판정 항목이다."},{"id":"hygiene-33","s":"hygiene","t":"법규","q":"축산물 위생관리법에 따른 도축에 대한 설명으로 옳은 것은?","o":["도축 후 검사는 임의로 생략할 수 있다","도축장은 위생 기준과 무관하게 운영할 수 있다","도축은 지정도축장에서만 할 수 있으며 무허가 도축은 금지된다","농가에서 자유롭게 도축해 판매할 수 있다"],"a":2,"e":"축산물 위생관리법은 도축을 지정도축장에서 하도록 하고 도축 전·후 검사를 의무화한다. 위반 시 영업정지·형사처벌 대상이 된다."},{"id":"hygiene-34","s":"hygiene","t":"법규","q":"축산물 이력제가 의무적으로 시행되는 축종으로 옳은 것은?","o":["닭과 오리","소와 돼지","모든 어류","양과 염소"],"a":1,"e":"축산물 이력제는 소·돼지에 대해 사육·도축·가공·유통 단계를 기록·관리한다. 닭·오리는 계란 이력제 등 별도 제도가 있다."},{"id":"hygiene-35","s":"hygiene","t":"법규","q":"축산물 원산지 표시에 대한 설명으로 옳은 것은?","o":["원산지를 표시하지 않거나 거짓 표시하면 처벌 대상이 된다","원산지는 표시하지 않아도 된다","원산지는 가공 후에는 표시할 필요가 없다","원산지 표시는 수입육에만 적용된다"],"a":0,"e":"축산물은 국내산·수입산 모두 원산지 표시 의무가 있으며, 미표시·거짓표시·혼동표시는 처벌 대상이다. 가공품도 원료육 원산지를 표시한다."},{"id":"hygiene-36","s":"hygiene","t":"법규","q":"축산물 판매 시 반드시 표시해야 하는 사항으로 가장 거리가 먼 것은?","o":["원료명 및 원산지","유통기한(소비기한)","식품의 명칭","작업자의 혈액형"],"a":3,"e":"표시사항은 명칭, 원료명, 원산지, 유통기한(소비기한), 보관방법, 제조자 등이다. 작업자 혈액형은 표시사항이 아니다."},{"id":"hygiene-37","s":"hygiene","t":"저장관리","q":"축산물 위생관리법상 도축 후 도체의 냉각 관리 기준으로 가장 옳은 것은?","o":["도체 심부온도를 20℃로 유지한다","도체 심부온도가 7℃ 이하가 되도록 신속히 냉각한다","도체는 60℃ 이상으로 가열 보관한다","냉각 없이 실온에서 24시간 보관한다"],"a":1,"e":"도축 직후 도체는 심부온도 7℃ 이하가 되도록 신속히 냉각해 미생물 증식을 억제해야 한다. 냉각 지연은 부패와 품질 저하의 원인이 된다."},{"id":"hygiene-38","s":"hygiene","t":"저장관리","q":"냉동 축산물의 보관 온도 기준으로 가장 옳은 것은?","o":["0~4℃","-5~-1℃","-18℃ 이하","5~10℃"],"a":2,"e":"냉동 보관은 -18℃ 이하를 유지한다. 0~4℃는 냉장, -1~-5℃는 최대빙결정생성대이다."},{"id":"hygiene-39","s":"hygiene","t":"위생관리","q":"식중독 예방을 위한 3원칙으로 옳은 것은?","o":["소금 절임, 건조, 훈연","청결 유지, 신속한 처리, 가열과 냉각","많이 조리, 오래 보관, 상온 유통","오래 보관, 실온 방치, 재가열"],"a":1,"e":"세균을 붙이지 않고(청결), 늘리지 않으며(신속·냉각), 죽이는(가열) 것이 기본 3원칙이다."},{"id":"hygiene-40","s":"hygiene","t":"위생관리","q":"세균이 가장 왕성하게 증식하는 위험온도대는?","o":["약 -20~-10℃","약 25~40℃","약 0~4℃","약 70~90℃"],"a":1,"e":"대부분의 식중독균은 25~40℃에서 빠르게 증식한다. 이 온도대에 식품을 오래 두지 않는 것이 예방의 핵심이다."},{"id":"hygiene-41","s":"hygiene","t":"위생관리","q":"작업장의 방충·방서 관리로 가장 적절한 것은?","o":["해충이 있어도 제품만 포장하면 된다","쥐약을 작업대 위에 놓는다","방서 관리는 식품위생과 무관하다","출입구에 방충망·에어커튼을 설치하고 쥐의 침입 통로를 차단한다"],"a":3,"e":"해충·설치류는 식중독균과 이물의 주요 운반원이다. 시설 차단, 출입구 관리, 정기 점검과 기록이 필요하다."},{"id":"hygiene-42","s":"hygiene","t":"위생관리","q":"화학물질(살균제 등) 관리로 가장 옳은 것은?","o":["식품과 분리된 전용 보관장에 라벨을 붙여 보관하고 MSDS를 비치한다","라벨을 떼어 용도를 숨긴다","작업대 옆에 두고 사용한다","식품 용기에 옮겨 담아 보관한다"],"a":0,"e":"살균제·세제 등은 식품과 분리 보관하고 용기 라벨을 유지하며 물질안전보건자료(MSDS)를 비치해야 한다. 식품 용기 재사용은 오염 사고의 원인이다."},{"id":"process-1","s":"process","t":"사후변화","q":"사후강직이 일어나는 직접적인 원인은?","o":["지방이 산화되어 과산화물이 생성되기 때문","미생물이 단백질을 분해하기 때문","콜라겐이 젤라틴으로 변하기 때문","ATP가 소실되어 액틴과 미오신이 결합하고 근육이 수축하기 때문"],"a":3,"e":"도축 후 ATP가 재생되지 않으면 근소포체의 칼슘이 유리되고 액틴-미오신 복합체가 형성되어 근육이 수축·경화한다. 이것이 사후강직이다."},{"id":"process-2","s":"process","t":"사후변화","q":"사후강직이 완료되는 시간으로 가장 옳게 짝지은 것은?","o":["모든 축종이 동일하게 24시간","소 18~24시간, 돼지 6~12시간, 닭 2~4시간","소 2~3시간, 돼지 1시간, 닭 30분","소 72시간, 돼지 48시간, 닭 24시간"],"a":1,"e":"체온과 대사 속도가 다른 만큼 강직 완료 시간도 다르다. 소는 18~24시간, 돼지는 6~12시간, 닭은 2~4시간 정도 걸린다."},{"id":"process-3","s":"process","t":"사후변화","q":"사후강직이 완료된 직후 근육의 pH 상태로 옳은 것은?","o":["pH가 9 이상으로 상승한다","pH가 7.0으로 유지된다","pH가 가장 높아진다","젖산 축적으로 pH가 가장 낮아진다"],"a":3,"e":"도축 후 해당작용으로 글리코겐이 젖산으로 분해되어 pH가 저하되고, 강직 완료 시점에 최저가 된다. 이후 숙성과 함께 서서히 상승한다."},{"id":"process-4","s":"process","t":"사후변화","q":"숙성(해경) 중 근육이 연해지는 주된 원인은?","o":["미생물이 증식하기 때문","칼파인 등 단백질 분해효소가 근원섬유 단백질을 분해하기 때문","지방이 증가하기 때문","수분이 증가하기 때문"],"a":1,"e":"숙성 중 칼파인(calpain) 등 내인성 단백질 분해효소가 근원섬유를 분해하고 결합조직이 약화되어 연도가 증가한다. 유리 아미노산 증가로 풍미도 좋아진다."},{"id":"process-5","s":"process","t":"사후변화","q":"소의 냉장 숙성(해경)에 필요한 기간으로 가장 옳은 것은?","o":["약 30~40일","약 10~14일","약 90일","약 1~2일"],"a":1,"e":"소는 통상 0~4℃에서 10~14일 정도 숙성하며, 돼지는 5~7일 정도로 짧다. 충분한 숙성으로 연도와 풍미가 향상된다."},{"id":"process-6","s":"process","t":"사후변화","q":"숙성 중 나타나는 변화로 옳지 않은 것은?","o":["근육 pH가 서서히 상승한다","연도가 증가한다","유리 아미노산이 증가해 풍미가 좋아진다","보수력이 완전히 사라진다"],"a":3,"e":"숙성으로 연도·풍미·보수력이 개선된다. 다만 장기 숙성 시 지방 산화와 미생물 증식, 육즙 손실에 유의해야 한다."},{"id":"process-7","s":"process","t":"이상육","q":"PSE육의 발생 원인으로 가장 옳은 것은?","o":["도축 전 스트레스로 사후 해당작용이 급격히 진행되어 pH가 빠르게 저하된다","도축 전 글리코겐이 완전히 소진된다","장기간 냉동 저장된다","세균에 의해 부패된다"],"a":0,"e":"PSE육은 스트레스에 민감한 돼지에서 도축 후 체온이 높은 상태에서 pH가 급격히 떨어져 발생한다. 근육 단백질 변성으로 수분을 보유하지 못한다."},{"id":"process-8","s":"process","t":"이상육","q":"PSE육의 육질 특성으로 옳은 것은?","o":["지방이 과도하게 많은 상태","정상육과 구분되지 않는다","옅은 색(Pale), 연함(Soft), 수분 삼출(Exudative)","어두운 색, 단단함, 건조함"],"a":2,"e":"PSE는 Pale·Soft·Exudative의 약자로 육색이 옅고 조직이 물러지며 육즙이 새어 나온다. 가열감량이 커지고 제품 수율이 떨어진다."},{"id":"process-9","s":"process","t":"이상육","q":"DFD육의 특성으로 옳은 것은?","o":["가열감량이 매우 크다","어두운 색, 단단함, 높은 pH로 미생물이 증식하기 쉽다","pH가 5.4로 매우 낮다","옅은 색, 연함, 수분 삼출"],"a":1,"e":"DFD는 Dark·Firm·Dry로 사전 스트레스로 글리코겐이 소진되어 pH가 높게(6.2 이상) 남는다. 보수력은 좋지만 미생물 증식과 지방 산화에 취약해 저장성이 나쁘다."},{"id":"process-10","s":"process","t":"이상육","q":"PSE육과 DFD육을 구분하는 기준으로 가장 옳은 것은?","o":["피부의 색","도체의 무게","사후 pH 저하 속도와 최종 pH 수준","근내지방도"],"a":2,"e":"PSE는 pH가 빠르고 크게 떨어지는 경우, DFD는 글리코겐 소진으로 pH가 높게 유지되는 경우이다. 모두 스트레스 관리로 예방한다."},{"id":"process-11","s":"process","t":"육색","q":"식육의 색을 결정하는 주된 색소단백질은?","o":["카로티노이드","미오글로빈","헤모글로빈만","멜라닌"],"a":1,"e":"근육 내 미오글로빈이 육색을 결정한다. 미오글로빈 함량이 많은 소고기는 돼지고기보다 붉고, 운동량이 많은 근육일수록 색이 진하다."},{"id":"process-12","s":"process","t":"육색","q":"산소와 결합한 옥시미오글로빈의 색으로 옳은 것은?","o":["녹색","갈색","암자색","선홍색"],"a":3,"e":"미오글로빈이 산소와 결합하면 옥시미오글로빈이 되어 선홍색을 띤다. 진공포장을 개봉하면 산소와 접촉해 선홍색으로 돌아온다."},{"id":"process-13","s":"process","t":"육색","q":"미오글로빈의 철이 3가로 산화된 메트미오글로빈의 색은?","o":["자색","분홍색","선홍색","갈색"],"a":3,"e":"메트미오글로빈은 갈색을 띠며 저장 중 산화로 증가하면 육색이 나빠진다. 산소 결핍 상태의 디옥시미오글로빈은 자색이다."},{"id":"process-14","s":"process","t":"육색","q":"염지육 특유의 분홍색을 내는 색소는?","o":["디옥시미오글로빈","메트미오글로빈","니트로소미오글로빈","옥시미오글로빈"],"a":2,"e":"아질산염에서 생성된 산화질소(NO)가 미오글로빈과 결합한 니트로소미오글로빈이 염지육의 안정된 분홍색을 만든다. 가열하면 니트로소미오크롬으로 변해 더 안정된다."},{"id":"process-15","s":"process","t":"염지","q":"아질산염의 기능으로 옳지 않은 것은?","o":["염지육의 발색을 돕는다","지방 산화를 억제한다","보툴리누스균의 증식을 억제한다","보수력을 높여 육즙 손실을 줄인다"],"a":3,"e":"아질산염은 발색, 보툴리누스 억제, 산화 방지의 기능을 한다. 보수력 향상은 인산염·소금의 역할이다."},{"id":"process-16","s":"process","t":"염지","q":"질산염(초석)이 염지 과정에서 하는 역할로 옳은 것은?","o":["향을 제거한다","미생물에 의해 아질산염으로 환원되어 서서히 발색에 관여한다","보수력을 급격히 높인다","그 자체로 즉시 발색한다"],"a":1,"e":"질산염은 미생물의 환원작용으로 아질산염이 되어 장기 숙성 제품에서 서서히 발색한다. 단기 제품에는 아질산염을 직접 사용한다."},{"id":"process-17","s":"process","t":"염지","q":"인산염을 첨가하는 주된 목적은?","o":["미생물을 사멸시킨다","보수력을 높여 육즙 손실을 줄이고 유화를 안정화한다","육색을 어둡게 만든다","지방을 완전히 제거한다"],"a":1,"e":"알칼리성 인산염은 근육 단백질의 등전점을 이동시키고 이온강도를 높여 보수력을 증가시킨다. 가열감량 감소와 유화 안정에 기여한다."},{"id":"process-18","s":"process","t":"염지","q":"소금이 염지육에서 하는 역할로 가장 거리가 먼 것은?","o":["풍미를 부여한다","육색을 선홍색으로 발색시킨다","삼투압으로 미생물 증식을 억제한다","단백질을 용출해 결착력을 높인다"],"a":1,"e":"소금은 보존성·풍미·단백질 용출(결착력)에 기여하지만 발색은 아질산염의 역할이다. 소금만으로는 안정된 분홍색을 얻을 수 없다."},{"id":"process-19","s":"process","t":"염지","q":"아스코르브산(비타민 C)을 첨가하는 목적으로 가장 옳은 것은?","o":["발색을 촉진하고 잔류 아질산염을 감소시킨다","미생물을 증식시킨다","보수력을 없앤다","육색을 갈색으로 산화시킨다"],"a":0,"e":"아스코르브산은 환원제로 작용해 아질산염의 NO 생성을 촉진하고 잔류 아질산염과 니트로사민 생성을 줄인다. 발색과 산화 방지에 도움이 된다."},{"id":"process-20","s":"process","t":"훈연","q":"훈연의 주된 목적으로 옳지 않은 것은?","o":["표면을 건조시켜 저장성을 높인다","육의 보수력을 완전히 제거한다","특유의 향을 부여한다","방부 효과를 준다"],"a":1,"e":"훈연은 페놀·유기산 등에 의한 방부, 향미 부여, 표면 건조, 발색 촉진의 효과가 있다. 보수력을 제거하는 공정이 아니다."},{"id":"process-21","s":"process","t":"훈연","q":"훈연 성분 중 방부·항산화와 향에 가장 크게 기여하는 것은?","o":["페놀류","질소가스","탄산칼슘","수분"],"a":0,"e":"훈연 연기 중 페놀류는 항산화·방부 작용과 훈연향을, 카르보닐화합물은 갈변·발색을, 유기산은 표면 산화 억제를 담당한다."},{"id":"process-22","s":"process","t":"훈연","q":"냉훈(저온훈연)의 온도 범위로 가장 옳은 것은?","o":["약 15~30℃","약 50~70℃","약 -20~-10℃","약 90~120℃"],"a":0,"e":"냉훈은 15~30℃ 정도로 오래 훈연해 건조·숙성 효과를 얻고, 온훈은 50~70℃, 열훈은 90℃ 이상에서 단시간 처리한다."},{"id":"process-23","s":"process","t":"유화","q":"소시지 유화에서 유화제 역할을 하는 주된 단백질은?","o":["케라틴","미오신 등 근원섬유단백질","미오글로빈","콜라겐"],"a":1,"e":"소금에 용출된 미오신·액토미오신이 지방입자를 둘러싸 유화를 안정화한다. 유화가 깨지면 지방이 분리되어 제품이 갈라진다."},{"id":"process-24","s":"process","t":"유화","q":"유화형 소시지 제조 시 유화를 깨뜨리는 요인으로 가장 거리가 먼 것은?","o":["과도한 지방 첨가","높은 온도에서의 장시간 세절","소금 첨가량 부족","충분한 냉각 유지"],"a":3,"e":"유화에는 적정 지방·소금 농도와 저온 유지가 중요하다. 온도가 높거나 소금이 부족하면 단백질이 용출되지 않아 유화가 깨진다."},{"id":"process-25","s":"process","t":"육제품","q":"베이컨의 주원료 부위는?","o":["돼지 족","소 우둔","닭 가슴살","돼지 삼겹살"],"a":3,"e":"베이컨은 돼지 삼겹살을 염지·훈연한 제품이다. 햄은 뒷다리, 소시지는 분쇄육을 주원료로 한다."},{"id":"process-26","s":"process","t":"육제품","q":"분쇄가공품에 속하지 않는 것은?","o":["미트볼","포장육","프랑크푸르트 소시지","햄버거 패티"],"a":1,"e":"분쇄가공품은 원료육을 분쇄·성형한 제품으로 소시지·패티·미트볼 등이 해당한다. 포장육은 단순 절단·포장한 신선육 제품이다."},{"id":"process-27","s":"process","t":"육제품","q":"발효소시지의 특징으로 가장 옳은 것은?","o":["가열하지 않으면 반드시 부패한다","젖산균 발효로 pH가 낮아져 보존성과 특유의 향이 생긴다","지방을 전혀 넣지 않는다","발효로 pH가 높아진다"],"a":1,"e":"발효소시지는 젖산균이 당을 분해해 pH를 낮추고(약 4.6~5.3) 수분을 건조시켜 보존성을 높인다. 살라미·페퍼로니가 대표적이다."},{"id":"process-28","s":"process","t":"냉동","q":"최대빙결정생성대의 온도 범위로 옳은 것은?","o":["-18~-25℃","0~4℃","-40~-50℃","-1~-5℃"],"a":3,"e":"-1~-5℃ 구간에서 식품 내 수분의 대부분이 얼음으로 변해 큰 얼음결정이 생기기 쉽다. 이 구간을 빨리 통과시켜야 조직 손상이 적다."},{"id":"process-29","s":"process","t":"냉동","q":"급속냉동이 완만냉동보다 품질에 유리한 이유는?","o":["미생물이 더 잘 자라기 때문","작은 얼음결정이 생성되어 세포 조직의 손상이 적기 때문","얼음결정이 커져 육즙이 늘기 때문","지방 산화가 촉진되기 때문"],"a":1,"e":"급속냉동은 최대빙결정생성대를 빠르게 통과해 세포 내외에 미세한 얼음결정을 형성하므로 해동 시 육즙 손실(드립)이 적다."},{"id":"process-30","s":"process","t":"냉동","q":"냉동육을 해동할 때 흘러나오는 액을 무엇이라 하는가?","o":["드립(drip)","유리수","표면수","쿠킹로스"],"a":0,"e":"드립은 해동 시 세포가 손상되어 빠져나오는 육즙으로, 가용성 단백질과 영양분을 포함한다. 냉동·해동이 반복되면 드립이 증가한다."},{"id":"process-31","s":"process","t":"냉동","q":"냉동 저장 중 식육에서 나타나는 품질 저하로 가장 거리가 먼 것은?","o":["단백질 변성으로 보수력이 떨어진다","표면 건조(동결건조)가 일어난다","근내지방도가 증가한다","지방 산화로 산패가 진행된다"],"a":2,"e":"냉동 중에는 지방 산화, 동결건조(freezer burn), 단백질 변성, 육색 변화가 일어난다. 근내지방도가 늘어나지는 않는다."},{"id":"process-32","s":"process","t":"저장","q":"냉장육의 일반적인 보관 온도로 가장 옳은 것은?","o":["-1~-5℃","10~15℃","-18℃ 이하","0~4℃"],"a":3,"e":"냉장은 0~4℃로 유지해 미생물 증식을 억제한다. -18℃ 이하는 냉동, -1~-5℃는 최대빙결정생성대이다."},{"id":"process-33","s":"process","t":"저장","q":"육류의 건조·염장 저장 원리로 가장 옳은 것은?","o":["수분활성도를 낮춰 미생물 증식을 억제한다","pH를 높여 미생물을 억제한다","산소를 공급해 호기성균을 늘린다","온도를 높여 미생물을 사멸시킨다"],"a":0,"e":"건조와 염장은 수분활성도(Aw)를 낮추고 삼투압을 높여 미생물의 증식을 억제한다. 육포·염건육이 이 원리를 이용한 제품이다."},{"id":"process-34","s":"process","t":"포장","q":"진공포장의 주된 목적으로 가장 옳은 것은?","o":["제품 온도를 높인다","육색을 갈색으로 만든다","수분을 증가시킨다","산소를 제거해 호기성 미생물 증식과 지방 산화를 억제한다"],"a":3,"e":"진공포장은 산소를 차단해 호기성 세균과 지방 산화를 억제하고 육즙 손실을 줄인다. 다만 혐기성균(보툴리누스 등)에는 주의해야 한다."},{"id":"process-35","s":"process","t":"가열","q":"육제품의 가열 목적으로 가장 거리가 먼 것은?","o":["풍미를 형성한다","병원성 미생물을 사멸시킨다","육의 보수력을 최대로 높여 무게를 늘린다","단백질을 변성시켜 조직을 안정화한다"],"a":2,"e":"가열은 미생물 사멸, 단백질 변성에 의한 조직 안정, 풍미 형성을 목적으로 한다. 가열하면 오히려 수분이 빠져 가열감량이 생긴다."},{"id":"process-36","s":"process","t":"가열","q":"육류 가열 시 중심부 온도 기준으로 가장 옳은 것은?","o":["45℃ 이상","55℃ 이상","75℃ 이상","95℃ 이상"],"a":2,"e":"식육 가공에서 안전한 가열의 기준은 중심온도 75℃ 이상이다. 중심온도 측정은 가열 완료 여부를 확인하는 핵심 관리점이다."},{"id":"process-37","s":"process","t":"보수력","q":"식육의 보수력(water holding capacity)에 대한 설명으로 옳은 것은?","o":["육의 지방 함량을 뜻한다","세균 증식 속도를 뜻한다","가열·냉동 등 외부 조건에서도 물을 보유하는 능력이다","근육의 색을 뜻한다"],"a":2,"e":"보수력은 식육이 자체 수분을 붙잡아 두는 능력으로 pH·가열·냉동에 영향을 받는다. 등전점(pH 5.0~5.5)에서 보수력이 가장 낮다."},{"id":"process-38","s":"process","t":"보수력","q":"가열감량을 줄이는 방법으로 가장 옳은 것은?","o":["냉동과 해동을 반복한다","pH를 등전점에 맞춘다","염지와 인산염 첨가로 보수력을 높인다","가열 온도를 최대한 높인다"],"a":2,"e":"소금·인산염으로 보수력을 높이고 급격한 가열을 피하면 가열감량이 줄어든다. 등전점 부근에서는 보수력이 최소가 된다."}];
+
+const SUBJECTS = [
+  {key:'intro',   name:'식육학개론',      short:'식육학',   color:'#b45309', desc:'도체 등급판정 · 부위 분할 · 정형 · 해부'},
+  {key:'hygiene', name:'식육위생학',      short:'위생학',   color:'#0f766e', desc:'식중독균 · 인수공통전염병 · HACCP · 법규'},
+  {key:'process', name:'식육가공 및 저장', short:'가공·저장', color:'#6d28d9', desc:'사후변화 · 이상육 · 염지 · 훈연 · 냉동'}
+];
+const SUBJ = Object.fromEntries(SUBJECTS.map(s=>[s.key,s]));
+const QMAP = Object.fromEntries(QUESTIONS.map(q=>[q.id,q]));
+const KEY = 'butcherExam.v1';
+const PASS = 60;
+
+/* ---------- storage ---------- */
+function emptyStore(){ return {wrong:{}, bookmarks:[], history:[], checks:[], seen:{}}; }
+function loadStore(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(!raw) return emptyStore();
+    const s = JSON.parse(raw) || {};
+    return {
+      wrong: (s.wrong && typeof s.wrong==='object') ? s.wrong : {},
+      bookmarks: Array.isArray(s.bookmarks) ? s.bookmarks.filter(id=>QMAP[id]) : [],
+      history: Array.isArray(s.history) ? s.history.slice(0,60) : [],
+      checks: Array.isArray(s.checks) ? s.checks : [],
+      seen: (s.seen && typeof s.seen==='object') ? s.seen : {}
+    };
+  }catch(e){ return emptyStore(); }
+}
+const store = loadStore();
+function persist(){
+  try{ localStorage.setItem(KEY, JSON.stringify(store)); }
+  catch(e){ /* 저장 공간이 없거나 차단된 경우 무시하고 계속 진행 */ }
+}
+
+/* ---------- helpers ---------- */
+const appEl = document.getElementById('app');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle = a => { const r=a.slice(); for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; };
+const fmtTime = s => { s=Math.max(0,s|0); const m=Math.floor(s/60), ss=s%60; return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0'); };
+const fmtDate = iso => { const d=new Date(iso); if(isNaN(d)) return '-'; return d.toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}); };
+const pct = (c,t) => t? Math.round(c/t*1000)/10 : 0;
+const byKey = k => QUESTIONS.filter(q=>q.s===k);
+
+/* ---------- state ---------- */
+let view='home';
+let session=null;      // 진행 중 세션
+let lastResult=null;   // 직전 채점 결과
+let timerId=null;
+let omrOpen=true;
+let reviewFilter='all';
+let resultFilter='all';
+let wrongFilter='all';
+let practiceSel={subject:'intro', count:10, immediate:true};
+
+/* ---------- navigation ---------- */
+const TABS = [
+  {v:'home',      label:'홈'},
+  {v:'exam',      label:'실전 모의고사'},
+  {v:'practice',  label:'과목별 학습'},
+  {v:'wrong',     label:'오답노트'},
+  {v:'bookmarks', label:'북마크'},
+  {v:'history',   label:'성적 기록'},
+  {v:'practical', label:'실기 요약'}
+];
+function paintTabs(){
+  document.getElementById('tabs').innerHTML = TABS.map(t=>
+    `<button type="button" data-tab="${t.v}" class="${view===t.v?'active':''}">${t.label}</button>`
+  ).join('');
+  document.querySelectorAll('#tabs [data-tab]').forEach(b=>{
+    b.onclick = ()=> go(b.dataset.tab);
+  });
+}
+async function go(v){
+  if(session && !session.done && v!==view){
+    const ok = await ask('학습을 중단할까요?', '진행 중인 풀이 기록은 저장되지 않습니다. 계속 나가시겠습니까?', '나가기', '계속 풀기');
+    if(!ok) return;
+    stopTimer(); session=null;
+  }
+  if(v!=='exam' && v!=='practice' && session && session.done){ /* 결과 화면에서 이동 */ }
+  view=v;
+  if(v!=='exam' && v!=='practice'){ /* 세션 유지 안 함 */ }
+  render();
+}
+function render(){
+  paintTabs();
+  switch(view){
+    case 'home': return renderHome();
+    case 'exam': return session? renderRun() : renderExamSetup();
+    case 'practice': return session? renderRun() : renderPracticeSetup();
+    case 'wrong': return renderWrong();
+    case 'bookmarks': return renderBookmarks();
+    case 'history': return renderHistory();
+    case 'practical': return renderPractical();
+    default: return renderHome();
+  }
+}
+
+/* ---------- modal ---------- */
+function ask(title, bodyHtml, okText='확인', cancelText='취소'){
+  return new Promise(resolve=>{
+    const root=document.getElementById('modalRoot');
+    root.innerHTML=`<div class="overlay"><div class="modal" role="dialog" aria-modal="true">
+      <h3>${esc(title)}</h3><div class="mbody">${bodyHtml}</div>
+      <div class="mactions"><button class="btn ghost" data-no>${esc(cancelText)}</button><button class="btn primary" data-yes>${esc(okText)}</button></div>
+    </div></div>`;
+    const done=v=>{ root.innerHTML=''; resolve(v); };
+    root.querySelector('[data-yes]').onclick=()=>done(true);
+    root.querySelector('[data-no]').onclick=()=>done(false);
+    root.querySelector('.overlay').onclick=e=>{ if(e.target.classList.contains('overlay')) done(false); };
+  });
+}
+
+/* ---------- home ---------- */
+function overallStats(){
+  const h=store.history;
+  const n=h.length;
+  const avg = n? Math.round(h.reduce((a,x)=>a+x.score,0)/n*10)/10 : 0;
+  const best = n? Math.max(...h.map(x=>x.score)) : 0;
+  const passes = h.filter(x=>x.passed).length;
+  return {n, avg, best, passes};
+}
+function renderHome(){
+  const wrongN=Object.keys(store.wrong).length;
+  const bmN=store.bookmarks.length;
+  const st=overallStats();
+  const totalQ=QUESTIONS.length;
+  appEl.innerHTML=`
+  <section class="card hero">
+    <span class="pill">2026 출제기준 반영 · 자체 제작 문항 ${totalQ}제</span>
+    <h2>식육처리기능사 필기, 실전처럼 풀어보세요</h2>
+    <p class="lead">객관식 4지선다 <b>60문항 · 60분</b>, 100점 만점에 <b>60점 이상</b>이면 합격입니다. 과목별 3과목에서 고르게 출제됩니다.</p>
+    <div class="kv">
+      <div><b>필기 시험</b>객관식 4지선다 60문항 / 60분</div>
+      <div><b>합격 기준</b>100점 만점 60점 이상 (과락 없음)</div>
+      <div><b>출제 과목</b>식육학개론 · 식육위생학 · 식육가공 및 저장</div>
+      <div><b>문항 배분</b>모의고사 3과목 × 20문항</div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="goExam">실전 모의고사 시작</button>
+      <button class="btn ghost" id="goPractice">과목별 집중 학습</button>
+      <button class="btn ghost" id="goWrong">오답노트 (${wrongN})</button>
+    </div>
+  </section>
+
+  <div class="section-title">학습 현황</div>
+  <div class="grid g3">
+    <div class="stat"><div class="k">응시 횟수</div><div class="v">${st.n}<small>회</small></div></div>
+    <div class="stat"><div class="k">평균 점수</div><div class="v">${st.avg}<small>점</small></div></div>
+    <div class="stat"><div class="k">최고 점수</div><div class="v">${st.best}<small>점</small></div></div>
+    <div class="stat"><div class="k">오답 문항</div><div class="v">${wrongN}<small>개</small></div></div>
+  </div>
+
+  <div class="section-title">과목별 문항 구성</div>
+  <div class="grid g2">
+    ${SUBJECTS.map(s=>`<div class="subj" style="border-left-color:${s.color}">
+      <h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p>
+      <div class="n">보유 문항 ${byKey(s.key).length}문항</div>
+    </div>`).join('')}
+  </div>
+
+  <div class="section-title">바로가기</div>
+  <div class="grid g2">
+    <div class="card" style="padding:15px">
+      <h3 style="font-size:15px;font-weight:800">오답노트 · 북마크</h3>
+      <p class="muted" style="margin:4px 0 10px">틀린 문항 ${wrongN}개 · 즐겨찾기 ${bmN}개를 모아 다시 풀 수 있습니다.</p>
+      <div class="actions" style="margin-top:0"><button class="btn ghost sm" id="goWrong2">오답노트</button><button class="btn ghost sm" id="goBm">북마크</button></div>
+    </div>
+    <div class="card" style="padding:15px">
+      <h3 style="font-size:15px;font-weight:800">실기(발골·정형) 핵심 요약</h3>
+      <p class="muted" style="margin:4px 0 10px">위생·칼 관리부터 정형 기준, 감점 요인, 시간 배분까지 체크리스트로 정리했습니다.</p>
+      <div class="actions" style="margin-top:0"><button class="btn ghost sm" id="goPrac">실기 요약 보기</button></div>
+    </div>
+  </div>`;
+  const on=(id,fn)=>{ const e=document.getElementById(id); if(e) e.onclick=fn; };
+  on('goExam',()=>{ session=null; go('exam'); });
+  on('goPractice',()=>{ session=null; go('practice'); });
+  on('goWrong',()=>go('wrong')); on('goWrong2',()=>go('wrong'));
+  on('goBm',()=>go('bookmarks')); on('goPrac',()=>go('practical'));
+}
+
+/* ---------- exam setup ---------- */
+function renderExamSetup(){
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">실전 모의고사</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">CBT 60문항 · 60분</h2>
+    <p class="muted">3과목에서 각 20문항씩 무작위로 출제됩니다. 실제 시험처럼 과목 순서(식육학개론 → 식육위생학 → 식육가공 및 저장)로 배열되며, 제한시간 60분이 지나면 자동 제출됩니다.</p>
+    <ul class="clean" style="margin-top:12px">
+      <li>문항 번호를 눌러 원하는 문제로 이동할 수 있습니다.</li>
+      <li>확신이 없는 문항은 <b>답안표시(⚑)</b>로 표시해 두고 다시 확인하세요.</li>
+      <li>키보드 <b>1~4</b>로 답을 고르고, <b>←/→</b>로 문항을 이동할 수 있습니다.</li>
+      <li>제출하면 문항별 정답·해설과 과목별 점수가 표시되고, 틀린 문항은 오답노트에 자동 저장됩니다.</li>
+    </ul>
+    <div class="kv">
+      <div><b>출제 문항</b>60문항 (3과목 × 20)</div>
+      <div><b>제한 시간</b>60분</div>
+      <div><b>합격 기준</b>60점 이상</div>
+      <div><b>문항당 배점</b>약 1.67점</div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="startExam">모의고사 시작</button>
+      <button class="btn ghost" id="backHome">홈으로</button>
+    </div>
+  </section>`;
+  document.getElementById('startExam').onclick=startExam;
+  document.getElementById('backHome').onclick=()=>go('home');
+}
+function startExam(){
+  const ids=[];
+  SUBJECTS.forEach(s=>{
+    const pool=shuffle(byKey(s.key)).slice(0,20);
+    pool.forEach(q=>ids.push(q.id));
+  });
+  session={
+    kind:'exam', title:'실전 모의고사', immediate:false,
+    ids, idx:0, ans:new Array(ids.length).fill(null), flags:new Array(ids.length).fill(false),
+    startedAt:Date.now(), totalSeconds:3600, secondsLeft:3600, endAt:0, done:false
+  };
+  startTimer();
+  render();
+}
+function startTimer(){
+  stopTimer();
+  if(!session || session.kind!=='exam') return;
+  session.endAt = Date.now() + session.secondsLeft*1000;
+  timerId=setInterval(tick,250);
+  updateTimerText();
+}
+function stopTimer(){ if(timerId){ clearInterval(timerId); timerId=null; } }
+function tick(){
+  if(!session || session.done || session.kind!=='exam'){ stopTimer(); return; }
+  const left=Math.max(0, Math.ceil((session.endAt-Date.now())/1000));
+  session.secondsLeft=left;
+  updateTimerText();
+  if(left<=0){ stopTimer(); submitSession(true); }
+}
+function updateTimerText(){
+  const t=document.getElementById('timer');
+  if(!t || !session) return;
+  t.textContent=fmtTime(session.secondsLeft);
+  t.classList.toggle('warn', session.secondsLeft<=300);
+}
+
+/* ---------- practice setup ---------- */
+function renderPracticeSetup(){
+  const s=practiceSel;
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">과목별 집중 학습</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">약한 과목부터 차근차근</h2>
+    <p class="muted">과목을 고르고 문항 수와 채점 방식을 선택하세요. ‘바로 채점’은 답을 고르는 즉시 정답과 해설을 보여줍니다.</p>
+    <div class="section-title" style="font-size:14px;margin:16px 0 8px">1. 과목 선택</div>
+    <div class="grid g2" id="subjPick">
+      ${SUBJECTS.map(x=>`<button type="button" class="subj" data-s="${x.key}" style="border-left-color:${x.color};text-align:left;cursor:pointer;${s.subject===x.key?'box-shadow:0 0 0 2px '+x.color+' inset;background:#fffdfd':''}">
+        <h3>${esc(x.name)} ${s.subject===x.key?'✓':''}</h3>
+        <p>${esc(x.desc)}</p>
+        <div class="n">${byKey(x.key).length}문항</div>
+      </button>`).join('')}
+    </div>
+    <div class="section-title" style="font-size:14px;margin:18px 0 8px">2. 문항 수</div>
+    <div class="filters" id="countPick" style="margin:0">
+      ${[[10,'10문항'],[20,'20문항'],[0,'전체']].map(([v,l])=>`<button type="button" data-c="${v}" class="${s.count===v?'on':''}">${l}</button>`).join('')}
+    </div>
+    <div class="section-title" style="font-size:14px;margin:18px 0 8px">3. 채점 방식</div>
+    <div class="filters" id="modePick" style="margin:0">
+      <button type="button" data-m="1" class="${s.immediate?'on':''}">바로 채점 (해설 즉시)</button>
+      <button type="button" data-m="0" class="${!s.immediate?'on':''}">제출 후 채점</button>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="startPractice">학습 시작</button>
+      <button class="btn ghost" id="backHome2">홈으로</button>
+    </div>
+  </section>`;
+  appEl.querySelectorAll('#subjPick [data-s]').forEach(b=>b.onclick=()=>{ practiceSel.subject=b.dataset.s; renderPracticeSetup(); });
+  appEl.querySelectorAll('#countPick [data-c]').forEach(b=>b.onclick=()=>{ practiceSel.count=+b.dataset.c; renderPracticeSetup(); });
+  appEl.querySelectorAll('#modePick [data-m]').forEach(b=>b.onclick=()=>{ practiceSel.immediate=b.dataset.m==='1'; renderPracticeSetup(); });
+  document.getElementById('startPractice').onclick=()=>{
+    const all=byKey(practiceSel.subject);
+    const n=practiceSel.count===0? all.length : Math.min(practiceSel.count, all.length);
+    const ids=shuffle(all).slice(0,n).map(q=>q.id);
+    session={
+      kind:'practice', title:SUBJ[practiceSel.subject].name+' 학습', immediate:practiceSel.immediate,
+      ids, idx:0, ans:new Array(ids.length).fill(null), flags:new Array(ids.length).fill(false),
+      startedAt:Date.now(), totalSeconds:null, secondsLeft:null, endAt:0, done:false
+    };
+    render();
+  };
+  document.getElementById('backHome2').onclick=()=>go('home');
+}
+
+/* ---------- run ---------- */
+function renderRun(){
+  const isExam=session.kind==='exam';
+  appEl.innerHTML=`
+    <div class="exambar">
+      <span class="prog" id="prog">${session.idx+1} / ${session.ids.length}</span>
+      ${isExam?`<span id="timer" class="nowrap">${fmtTime(session.secondsLeft)}</span>`:`<span class="chip">${esc(session.title)}</span>`}
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="flagBtn" type="button">답안표시</button>
+      <button class="btn primary sm" id="submitBtn" type="button">${isExam?'시험 제출':'채점하기'}</button>
+    </div>
+    <div id="qArea"></div>
+    <div class="card omrwrap">
+      <details class="omrdetails" ${omrOpen?'open':''} id="omrDetails">
+        <summary>답안 현황 보기 (${session.ans.filter(a=>a!==null).length} / ${session.ids.length} 응답)</summary>
+        <div class="omr" id="omr"></div>
+        <div class="legend">
+          <span><i style="background:#e8f5f2;border:1px solid #9fd6cc"></i>응답</span>
+          <span><i style="background:#fff;border:1px solid #e3e6eb"></i>미응답</span>
+          <span><i style="background:#e0a800;border-radius:50%"></i>답안표시</span>
+          <span><i style="background:#fff;outline:2px solid var(--brand)"></i>현재 문항</span>
+        </div>
+      </details>
+    </div>`;
+  document.getElementById('omrDetails').addEventListener('toggle', e=>{ omrOpen=e.target.open; });
+  document.getElementById('submitBtn').onclick=()=>submitSession(false);
+  document.getElementById('flagBtn').onclick=()=>{
+    session.flags[session.idx]=!session.flags[session.idx];
+    paintQuestion(); paintOMR();
+  };
+  paintQuestion();
+  paintOMR();
+  if(isExam) updateTimerText();
+}
+function optionClass(q,i,st){
+  const ans=session.ans[session.idx];
+  let c='opt';
+  if(st.reveal){
+    if(i===q.a)c+=' correct';
+    else if(i===ans)c+=' wrong';
+  }else if(i===ans) c+=' sel';
+  return c;
+}
+function paintQuestion(){
+  if(!session) return;
+  const i=session.idx, q=QMAP[session.ids[i]];
+  const revealed = session.immediate && session.ans[i]!==null;
+  const isExam=session.kind==='exam';
+  const sub=SUBJ[q.s];
+  const aria = session.ans[i]!==null ? '선택됨' : '';
+  document.getElementById('qArea').innerHTML=`
+    <article class="qcard">
+      <div class="qmeta">
+        <span class="no">${i+1}</span>
+        <span class="chip" style="color:${sub.color};background:#f6f7f9">${esc(sub.name)}</span>
+        <span>${esc(q.t)}</span>
+        ${session.flags[i]?'<span class="chip warn">답안표시됨</span>':''}
+      </div>
+      <h2 class="qtext">${esc(q.q)}</h2>
+      <div class="opts" role="group" aria-label="보기">
+        ${q.o.map((t,k)=>`<button type="button" class="${optionClass(q,k,{reveal:revealed})}" data-opt="${k}" aria-pressed="${session.ans[i]===k}">
+          <span class="num">${'①②③④'[k]}</span><span class="txt">${esc(t)}</span>
+          ${revealed && k===q.a?'<span class="tag" style="color:#0f766e">정답</span>':''}
+          ${revealed && k!==q.a && k===session.ans[i]?'<span class="tag" style="color:#c62828">내 답</span>':''}
+        </button>`).join('')}
+      </div>
+      ${revealed?`<div class="exp"><div class="ansline">정답 ${'①②③④'[q.a]} · ${esc(q.o[q.a])}</div>${esc(q.e)}</div>`:''}
+      ${isExam && session.ans[i]===null?`<div class="note" style="margin-top:12px">답을 선택하면 자동으로 저장됩니다. 나중에 답안 현황에서 다시 확인할 수 있습니다.</div>`:''}
+      <div class="qnav">
+        <button class="btn ghost" id="prevBtn" type="button" ${i===0?'disabled':''}>← 이전</button>
+        ${session.immediate?'<button class="btn ghost" id="flagBtn2" type="button">답안표시</button>':''}
+        ${i<session.ids.length-1
+          ? `<button class="btn primary" id="nextBtn" type="button">다음 →</button>`
+          : `<button class="btn primary" id="finishBtn" type="button">${isExam?'시험 제출':'채점하기'}</button>`}
+      </div>
+    </article>`;
+  const qa=document.getElementById('qArea');
+  qa.querySelectorAll('[data-opt]').forEach(b=>{
+    b.onclick=()=>choose(+b.dataset.opt);
+  });
+  const prev=document.getElementById('prevBtn'); if(prev) prev.onclick=()=>move(-1);
+  const next=document.getElementById('nextBtn'); if(next) next.onclick=()=>move(1);
+  const fin=document.getElementById('finishBtn'); if(fin) fin.onclick=()=>submitSession(false);
+  const f2=document.getElementById('flagBtn2'); if(f2) f2.onclick=()=>{ session.flags[session.idx]=!session.flags[session.idx]; paintQuestion(); paintOMR(); };
+  document.getElementById('prog').textContent=(i+1)+' / '+session.ids.length;
+  const fb=document.getElementById('flagBtn');
+  if(fb){ fb.textContent=session.flags[i]?'표시 해제':'답안표시'; fb.classList.toggle('flagged', !!session.flags[i]); }
+}
+function choose(k){
+  if(!session) return;
+  const i=session.idx;
+  if(session.immediate && session.ans[i]!==null) return; // 이미 채점된 문항은 잠금
+  session.ans[i]=k;
+  store.seen[QMAP[session.ids[i]].id]=true;
+  paintQuestion(); paintOMR();
+}
+function move(d){
+  if(!session) return;
+  const n=session.idx+d;
+  if(n<0||n>=session.ids.length) return;
+  session.idx=n; paintQuestion(); paintOMR();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function paintOMR(){
+  const el=document.getElementById('omr'); if(!el||!session) return;
+  el.innerHTML=session.ids.map((id,i)=>{
+    let c='';
+    if(session.ans[i]!==null) c+=' done';
+    if(session.flags[i]) c+=' flag';
+    if(i===session.idx) c+=' cur';
+    return `<button type="button" class="${c.trim()}" data-j="${i}" aria-label="${i+1}번 문항${session.ans[i]!==null?' 응답함':' 미응답'}">${i+1}</button>`;
+  }).join('');
+  el.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{ session.idx=+b.dataset.j; paintQuestion(); paintOMR(); window.scrollTo({top:0,behavior:'smooth'}); });
+  const sum=document.querySelector('#omrDetails summary');
+  if(sum) sum.textContent=`답안 현황 보기 (${session.ans.filter(a=>a!==null).length} / ${session.ids.length} 응답)`;
+}
+
+/* ---------- grading ---------- */
+function gradeSession(){
+  const per={};
+  let correct=0;
+  const marks=session.ids.map((id,i)=>{
+    const q=QMAP[id];
+    const ok=session.ans[i]===q.a;
+    if(ok) correct++;
+    if(!per[q.s]) per[q.s]={c:0,n:0};
+    per[q.s].n++; if(ok) per[q.s].c++;
+    return ok;
+  });
+  const total=session.ids.length;
+  const score=Math.round(correct/total*100);
+  return {correct,total,score,per,marks,answered:session.ans.filter(a=>a!==null).length};
+}
+async function submitSession(auto){
+  if(!session) return;
+  if(session.done) return;
+  const un=session.ans.filter(a=>a===null).length;
+  if(!auto){
+    const body = un>0
+      ? `<b>${un}문항</b>이 미응답 상태입니다. 미응답은 오답 처리됩니다. 제출하시겠습니까?`
+      : '제출하면 답안을 바꿀 수 없습니다. 제출하시겠습니까?';
+    const ok=await ask(un>0?'아직 미응답 문항이 있습니다':'시험지를 제출할까요?', body, '제출', '계속 풀기');
+    if(!ok) return;
+  }
+  stopTimer();
+  session.done=true;
+  const mr=document.getElementById('modalRoot'); if(mr) mr.innerHTML='';
+  const g=gradeSession();
+  const secs=Math.max(1, Math.round((Date.now()-session.startedAt)/1000));
+  // 오답노트 갱신
+  session.ids.forEach((id,i)=>{
+    const q=QMAP[id];
+    if(session.ans[i]===q.a){
+      if(session.kind==='retry' && store.wrong[id]) delete store.wrong[id];
+    }else{
+      const prev=store.wrong[id];
+      store.wrong[id]={n:(prev?prev.n:0)+1, at:new Date().toISOString()};
+    }
+  });
+  // 성적 기록
+  if(session.kind==='exam' || session.kind==='practice'){
+    store.history.unshift({
+      at:new Date().toISOString(), kind:session.kind, label:session.title,
+      total:g.total, correct:g.correct, score:g.score,
+      passed:(session.kind==='exam' && g.score>=PASS), per:g.per, secs
+    });
+    store.history=store.history.slice(0,60);
+  }
+  persist();
+  lastResult={...g, secs, kind:session.kind, title:session.title, ids:session.ids.slice(), ans:session.ans.slice(), startedAt:session.startedAt};
+  session=null;
+  resultFilter='all';
+  view = 'exam'; // 결과는 exam 뷰 안에서 렌더
+  renderResult();
+  paintTabs();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function renderResult(){
+  const r=lastResult; if(!r) return renderHome();
+  const passed=r.score>=PASS;
+  const mins=Math.floor(r.secs/60), sec=r.secs%60;
+  const perRows=SUBJECTS.filter(s=>r.per[s.key]).map(s=>{
+    const p=r.per[s.key]; const rate=pct(p.c,p.n);
+    const cls=rate>=60?'':(rate>=40?'mid':'low');
+    return `<div style="margin-top:10px">
+      <div class="rowline" style="border:0;padding:0"><span>${esc(s.name)}</span><span>${p.c} / ${p.n} · ${rate}점</span></div>
+      <div class="bar"><i class="${cls}" style="width:${rate}%"></i></div>
+    </div>`;
+  }).join('');
+  let reviewIds=r.ids.map((id,i)=>({id,i}));
+  if(resultFilter==='wrong') reviewIds=reviewIds.filter(x=>r.marks[x.i]===false);
+  appEl.innerHTML=`
+  <section class="card">
+    <div class="scorebox">
+      <div class="scorecircle ${passed?'pass':'fail'}">
+        <div class="s">${r.score}</div><div class="l">/ 100점</div>
+      </div>
+      <div style="flex:1 1 200px">
+        <span class="badge ${passed?'pass':'fail'}">${r.total>=20? (passed?'합격':'불합격') : (passed?'목표 달성':'복습 필요')}</span>
+        <h2 style="font-size:19px;font-weight:800;margin:10px 0 4px">${esc(r.title)} 결과</h2>
+        <p class="muted">정답 ${r.correct} / ${r.total}문항 · 미응답 ${r.total-r.answered}문항 · 소요 ${mins}분 ${sec}초</p>
+        <p class="muted" style="margin-top:2px">${r.total>=20? (passed?'축하합니다. 합격 기준(60점)을 넘었습니다.':'합격까지 '+(PASS-r.score)+'점이 부족합니다. 오답 해설을 꼭 확인하세요.') : '연습 결과입니다. 틀린 문항은 오답노트에 저장되었습니다.'}</p>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <h3 style="font-size:15px;font-weight:800">과목별 성적</h3>
+    ${perRows || '<p class="muted">과목 정보가 없습니다.</p>'}
+    <div class="actions">
+      <button class="btn primary" id="againSame">${r.kind==='exam'?'새 모의고사':'같은 조건으로 다시'}</button>
+      <button class="btn ghost" id="goWrongBtn">오답노트 (${Object.keys(store.wrong).length})</button>
+      <button class="btn ghost" id="homeBtn">홈으로</button>
+    </div>
+  </section>
+  <div class="section-title">문항별 해설</div>
+  <div class="filters">
+    <button type="button" data-f="all" class="${resultFilter==='all'?'on':''}">전체 ${r.total}</button>
+    <button type="button" data-f="wrong" class="${resultFilter==='wrong'?'on':''}">틀린 문항 ${r.total-r.correct}</button>
+  </div>
+  <div id="reviewList">${reviewIds.map(x=>reviewCard(QMAP[x.id], x.i, r)).join('')}</div>`;
+  document.getElementById('againSame').onclick=()=>{
+    if(r.kind==='exam'){ session=null; go('exam'); setTimeout(startExam,30); }
+    else { session=null; go('practice'); }
+  };
+  document.getElementById('goWrongBtn').onclick=()=>go('wrong');
+  document.getElementById('homeBtn').onclick=()=>go('home');
+  appEl.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ resultFilter=b.dataset.f; renderResult(); });
+}
+function reviewCard(q,i,r){
+  const myAns=r.ans[i];
+  const ok=myAns===q.a;
+  return `<article class="review">
+    <div class="qmeta"><span class="no">${i+1}</span>
+      <span class="chip" style="color:${SUBJ[q.s].color}">${esc(SUBJ[q.s].name)}</span>
+      <span>${esc(q.t)}</span>
+      <span class="chip ${ok?'ok':'bad'}">${ok?'정답':(myAns===null?'미응답':'오답')}</span>
+    </div>
+    <div class="qq">${esc(q.q)}</div>
+    ${q.o.map((t,k)=>`<div class="mini ${k===q.a?'c':(k===myAns?'w':'')}">
+      <b>${'①②③④'[k]}</b><span>${esc(t)}</span>
+      ${k===q.a?'<span class="chip ok" style="margin-left:auto">정답</span>':''}
+      ${k===myAns && k!==q.a?'<span class="chip bad" style="margin-left:auto">내 답</span>':''}
+    </div>`).join('')}
+    <div class="exp"><div class="ansline">정답 ${'①②③④'[q.a]}</div>${esc(q.e)}</div>
+  </article>`;
+}
+
+/* ---------- wrong notebook ---------- */
+function renderWrong(){
+  const ids=Object.keys(store.wrong).filter(id=>QMAP[id]);
+  const counts={intro:0,hygiene:0,process:0};
+  ids.forEach(id=>counts[QMAP[id].s]++);
+  const list=ids.filter(id=>wrongFilter==='all'||QMAP[id].s===wrongFilter)
+    .sort((a,b)=>(store.wrong[b].n||0)-(store.wrong[a].n||0));
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">오답노트</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">틀린 문항 ${ids.length}개</h2>
+    <p class="muted">모의고사·과목 학습에서 틀린 문항이 자동으로 저장됩니다. 반복해서 틀린 문항일수록 위에 표시됩니다.</p>
+    <div class="grid g3" style="margin-top:12px">
+      ${SUBJECTS.map(s=>`<div class="stat"><div class="k">${esc(s.name)}</div><div class="v">${counts[s.key]}<small>개</small></div></div>`).join('')}
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="retryWrong" ${ids.length?'':'disabled'}>오답만 다시 풀기</button>
+      <button class="btn ghost" id="clearWrong" ${ids.length?'':'disabled'}>오답노트 비우기</button>
+    </div>
+  </section>
+  <div class="filters">
+    <button type="button" data-wf="all" class="${wrongFilter==='all'?'on':''}">전체 ${ids.length}</button>
+    ${SUBJECTS.map(s=>`<button type="button" data-wf="${s.key}" class="${wrongFilter===s.key?'on':''}">${esc(s.short)} ${counts[s.key]}</button>`).join('')}
+  </div>
+  ${list.length? list.map(id=>wrongCard(QMAP[id])).join('') : `<div class="card empty"><div class="big">OK</div>${ids.length? '해당 과목의 오답이 없습니다.' : '아직 오답이 없습니다. 모의고사를 풀면 틀린 문항이 여기에 쌓입니다.'}</div>`}`;
+  appEl.querySelectorAll('[data-wf]').forEach(b=>b.onclick=()=>{ wrongFilter=b.dataset.wf; renderWrong(); });
+  bindCardActions(appEl);
+  const rw=document.getElementById('retryWrong'); if(rw) rw.onclick=()=>startRetry(list,'오답 다시 풀기');
+  const cw=document.getElementById('clearWrong'); if(cw) cw.onclick=async()=>{
+    const ok=await ask('오답노트를 비울까요?','저장된 오답 기록이 모두 삭제됩니다. 되돌릴 수 없습니다.','비우기','취소');
+    if(ok){ store.wrong={}; persist(); renderWrong(); }
+  };
+}
+function wrongCard(q){
+  const w=store.wrong[q.id]||{n:1};
+  const bm=store.bookmarks.includes(q.id);
+  return `<article class="review">
+    <div class="qmeta">
+      <span class="chip" style="color:${SUBJ[q.s].color}">${esc(SUBJ[q.s].name)}</span>
+      <span class="chip bad">${w.n}회 틀림</span>
+      <span>${esc(q.t)}</span>
+      <span style="margin-left:auto"></span>
+      <button class="btn ghost sm" data-bm="${q.id}" type="button">${bm?'★ 북마크됨':'☆ 북마크'}</button>
+      <button class="btn ghost sm" data-rm="${q.id}" type="button">삭제</button>
+    </div>
+    <div class="qq">${esc(q.q)}</div>
+    <div class="mini c"><b>${'①②③④'[q.a]}</b><span>${esc(q.o[q.a])}</span></div>
+    <div class="exp"><div class="ansline">정답 ${'①②③④'[q.a]}</div>${esc(q.e)}</div>
+  </article>`;
+}
+function bindCardActions(root){
+  root.querySelectorAll('[data-bm]').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.bm; toggleBookmark(id); render();
+  });
+  root.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{
+    delete store.wrong[b.dataset.rm]; persist(); render();
+  });
+}
+function toggleBookmark(id){
+  const i=store.bookmarks.indexOf(id);
+  if(i>=0) store.bookmarks.splice(i,1); else store.bookmarks.push(id);
+  persist();
+}
+
+/* ---------- bookmarks ---------- */
+function renderBookmarks(){
+  const ids=store.bookmarks.filter(id=>QMAP[id]);
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">북마크</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">즐겨찾기 ${ids.length}개</h2>
+    <p class="muted">헷갈리는 문항을 모아 두고 시험 직전에 다시 확인하세요.</p>
+    <div class="actions">
+      <button class="btn primary" id="retryBm" ${ids.length?'':'disabled'}>북마크 문제 풀기</button>
+    </div>
+  </section>
+  ${ids.length? ids.map(id=>{
+    const q=QMAP[id];
+    return `<article class="review">
+      <div class="qmeta"><span class="chip" style="color:${SUBJ[q.s].color}">${esc(SUBJ[q.s].name)}</span><span>${esc(q.t)}</span>
+        <span style="margin-left:auto"></span>
+        <button class="btn ghost sm" data-bm="${q.id}" type="button">★ 해제</button>
+      </div>
+      <div class="qq">${esc(q.q)}</div>
+      <div class="mini c"><b>${'①②③④'[q.a]}</b><span>${esc(q.o[q.a])}</span></div>
+      <div class="exp"><div class="ansline">정답 ${'①②③④'[q.a]}</div>${esc(q.e)}</div>
+    </article>`;
+  }).join('') : `<div class="card empty"><div class="big">☆</div>북마크한 문항이 없습니다. 오답노트나 해설에서 ☆ 버튼으로 추가할 수 있습니다.</div>`}`;
+  bindCardActions(appEl);
+  const rb=document.getElementById('retryBm'); if(rb) rb.onclick=()=>startRetry(ids,'북마크 문제 풀기');
+}
+function startRetry(ids, title){
+  if(!ids.length) return;
+  session={
+    kind:'retry', title, immediate:false,
+    ids:ids.slice(), idx:0, ans:new Array(ids.length).fill(null), flags:new Array(ids.length).fill(false),
+    startedAt:Date.now(), totalSeconds:null, secondsLeft:null, endAt:0, done:false
+  };
+  view='practice';
+  render();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------- history ---------- */
+function renderHistory(){
+  const h=store.history;
+  const st=overallStats();
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">성적 기록</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">나의 학습 기록</h2>
+    <p class="muted">최근 60회까지 이 기기에 저장됩니다.</p>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="stat"><div class="k">응시</div><div class="v">${st.n}<small>회</small></div></div>
+      <div class="stat"><div class="k">평균</div><div class="v">${st.avg}<small>점</small></div></div>
+      <div class="stat"><div class="k">최고</div><div class="v">${st.best}<small>점</small></div></div>
+      <div class="stat"><div class="k">60점 이상</div><div class="v">${st.passes}<small>회</small></div></div>
+    </div>
+    <div class="actions"><button class="btn ghost" id="clearHist" ${h.length?'':'disabled'}>기록 모두 삭제</button></div>
+  </section>
+  ${h.length? h.map((x,i)=>`
+    <article class="review">
+      <div class="qmeta">
+        <span class="chip ${x.score>=PASS?'ok':'bad'}">${x.score}점</span>
+        <span class="chip">${x.kind==='exam'?'모의고사':'과목 학습'}</span>
+        <span>${esc(x.label||'')}</span>
+        <span style="margin-left:auto" class="muted">${fmtDate(x.at)}</span>
+      </div>
+      <div class="rowline"><span>정답 ${x.correct} / ${x.total}</span><span class="muted">소요 ${Math.floor(x.secs/60)}분 ${x.secs%60}초</span></div>
+      <div style="margin-top:6px">
+        ${SUBJECTS.filter(s=>x.per&&x.per[s.key]).map(s=>{
+          const p=x.per[s.key], rate=pct(p.c,p.n);
+          return `<div style="margin-top:6px"><div class="rowline" style="border:0;padding:0;font-size:12.5px;font-weight:600"><span>${esc(s.short)}</span><span>${p.c}/${p.n} · ${rate}점</span></div><div class="bar" style="height:6px"><i class="${rate>=60?'':(rate>=40?'mid':'low')}" style="width:${rate}%"></i></div></div>`;
+        }).join('')}
+      </div>
+    </article>`).join('') : `<div class="card empty"><div class="big">-</div>아직 기록이 없습니다. 모의고사를 한 번 풀어보세요.</div>`}`;
+  const c=document.getElementById('clearHist'); if(c) c.onclick=async()=>{
+    const ok=await ask('성적 기록을 모두 삭제할까요?','오답노트와 북마크는 그대로 유지됩니다.','삭제','취소');
+    if(ok){ store.history=[]; persist(); renderHistory(); }
+  };
+}
+
+/* ---------- practical ---------- */
+const PRACTICAL=[
+  {id:'p1', title:'위생복·개인 위생', items:[
+    '위생복·위생모·앞치마를 착용하고 머리카락이 나오지 않게 정리한다.',
+    '손톱은 짧게 자르고 시계·반지 등 장신구를 모두 제거한다.',
+    '작업 시작 전과 화장실·외출 후에는 손을 씻고 소독한다.',
+    '손에 상처가 있으면 방수 밴드와 장갑으로 보호하고 시험관에게 알린다.',
+    '작업 중 바닥 물기를 즉시 제거하고 미끄럼 방지 신발을 착용한다.'
+  ]},
+  {id:'p2', title:'칼·도구 관리', items:[
+    '사용 전 칼날 상태를 확인하고 연마봉으로 날을 세운다.',
+    '칼은 사용 전후 세척·소독하고 물기를 닦아 보관한다.',
+    '칼을 작업대 위에 방치하지 않고 칼꽂이에 넣는다.',
+    '칼을 든 채 돌아서거나 다른 사람과 대화하지 않는다(칼끝은 항상 바닥 쪽).',
+    '도마·발골대는 용도별로 구분하고 작업 후 세척·소독한다.'
+  ]},
+  {id:'p3', title:'대분할·소분할 정형 기준', items:[
+    '소 10대분할: 목심 · 앞다리 · 갈비 · 등심 · 채끝 · 안심 · 양지 · 사태 · 꾸리 · 우둔',
+    '돼지 7대분할: 목심 · 앞다리 · 등심 · 삼겹 · 갈비 · 뒷다리 · 안심',
+    '부위별 경계(근막·근간지방·뼈)를 확인하고 절단선을 먼저 잡는다.',
+    '절단면은 평평하게, 근섬유 방향을 유지해 썬다.',
+    '뼈를 절단한 뒤에는 골분(톱밥)을 반드시 제거한다.',
+    '규격 중량·두께를 일정하게 맞춰 편차를 줄인다.'
+  ]},
+  {id:'p4', title:'트리밍과 감점 요인', items:[
+    '표면 지방은 두께를 일정하게 남기고 과도하게 도려내지 않는다.',
+    '은막(근막)과 힘줄은 부위 특성에 맞게 제거한다.',
+    '과도한 트리밍으로 정육률이 떨어지면 감점된다.',
+    '칼자국·찢어진 절단면·각이 무너진 형태는 감점 요인이다.',
+    '부위 명칭을 혼동한 정형(예: 등심과 채끝)은 큰 감점이다.',
+    '작업 후 작업대 정리·잔육 회수 상태도 평가에 포함된다.'
+  ]},
+  {id:'p5', title:'시간 배분·작업 순서', items:[
+    '시작 전 지시사항을 끝까지 듣고 준비물·도구를 점검한다(3~5분).',
+    '대분할(부위 분리)에 20~25분을 배분한다.',
+    '소분할·트리밍·규격 맞추기에 20~25분을 배분한다.',
+    '마무리 정리·계량 확인에 5분을 남긴다.',
+    '막히면 혼자 오래 고민하지 말고 손을 들어 시험관에게 확인한다.',
+    '긴장으로 떨릴 때는 칼을 내려놓고 호흡을 고른 뒤 다시 잡는다.'
+  ]},
+  {id:'p6', title:'시험 당일 준비물', items:[
+    '수험표·신분증·필기도구를 미리 챙긴다.',
+    '손목·손가락 부상 여부를 확인하고 손톱을 정리한다.',
+    '미끄럼 방지 신발과 활동하기 편한 복장을 준비한다.',
+    '시험장 냉장 환경에 대비해 얇은 겉옷을 준비한다.',
+    '시험 시작 전 작업대·기구 위생 상태를 눈으로 확인한다.'
+  ]}
+];
+function renderPractical(){
+  const done=store.checks;
+  const total=PRACTICAL.reduce((a,g)=>a+g.items.length,0);
+  appEl.innerHTML=`
+  <section class="card">
+    <span class="pill">실기 대비</span>
+    <h2 style="font-size:20px;font-weight:800;margin:8px 0 6px">발골·정형 핵심 체크리스트</h2>
+    <p class="muted">실기 시험은 작업형으로, 위생 관리와 정형의 정확도·규격·시간이 함께 평가됩니다. 아래 항목을 실제 작업 전에 하나씩 확인하세요.</p>
+    <div class="kv">
+      <div><b>소 분할</b>10대분할 / 39소분할</div>
+      <div><b>돼지 분할</b>7대분할 / 25소분할</div>
+      <div><b>평가 방식</b>작업형(약 1시간 내외)</div>
+      <div><b>합격 기준</b>100점 만점 60점 이상</div>
+    </div>
+    <div class="rowline" style="margin-top:14px"><span>체크 진행</span><span>${done.length} / ${total}</span></div>
+    <div class="bar"><i style="width:${Math.round(done.length/total*100)}%"></i></div>
+  </section>
+  ${PRACTICAL.map(g=>`
+    <section class="card">
+      <h3 style="font-size:15.5px;font-weight:800;margin-bottom:4px">${esc(g.title)}</h3>
+      ${g.items.map((t,k)=>{
+        const id=g.id+'-'+k; const on=done.includes(id);
+        return `<label class="check"><input type="checkbox" data-c="${id}" ${on?'checked':''}><span>${esc(t)}</span></label>`;
+      }).join('')}
+    </section>`).join('')}
+  <section class="card">
+    <h3 style="font-size:15.5px;font-weight:800;margin-bottom:8px">정형 시 자주 나오는 실수</h3>
+    <ul class="clean">
+      <li>지방을 모두 떼어내 규격 중량에 못 미치는 경우 → 표면 지방 두께를 일정하게 남긴다.</li>
+      <li>근섬유 방향을 무시하고 썰어 결이 거칠어지는 경우 → 결에 직각으로 썬다.</li>
+      <li>부위 경계를 잘못 잡아 다른 부위와 섞이는 경우 → 뼈·근막 기준점을 먼저 확인한다.</li>
+      <li>칼날이 무뎌 절단면이 찢어지는 경우 → 작업 전 연마봉으로 날을 세운다.</li>
+      <li>시간에 쫓겨 마무리 정리를 못 하는 경우 → 마지막 5분을 남겨 둔다.</li>
+    </ul>
+    <div class="note" style="margin-top:12px">실기 평가 항목·배점·시간은 시행기관(한국산업인력공단) 공고와 시험장 안내에 따라 달라질 수 있으므로, 응시 전 큐넷 공고를 확인하세요.</div>
+  </section>`;
+  appEl.querySelectorAll('[data-c]').forEach(cb=>cb.onchange=()=>{
+    const id=cb.dataset.c;
+    const i=store.checks.indexOf(id);
+    if(cb.checked){ if(i<0) store.checks.push(id); } else if(i>=0) store.checks.splice(i,1);
+    persist();
+    const doneN=store.checks.length;
+    const row=appEl.querySelector('.rowline span:last-child');
+    if(row) row.textContent=`${doneN} / ${total}`;
+    const bar=appEl.querySelector('.bar>i'); if(bar) bar.style.width=Math.round(doneN/total*100)+'%';
+  });
+}
+
+/* ---------- keyboard ---------- */
+document.addEventListener('keydown', e=>{
+  if(view!=='exam' && view!=='practice') return;
+  if(!session || session.done) return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea') return;
+  if(['1','2','3','4'].includes(e.key)){
+    const k=+e.key-1; const q=QMAP[session.ids[session.idx]];
+    if(k<q.o.length){ e.preventDefault(); choose(k); }
+  }else if(e.key==='ArrowLeft'){ e.preventDefault(); move(-1); }
+  else if(e.key==='ArrowRight'){ e.preventDefault(); move(1); }
+  else if(e.key==='f'||e.key==='F'){ e.preventDefault(); session.flags[session.idx]=!session.flags[session.idx]; paintQuestion(); paintOMR(); }
+});
+window.addEventListener('beforeunload', e=>{
+  if(session && !session.done){ e.preventDefault(); e.returnValue=''; }
+});
+
+/* ---------- boot ---------- */
+render();
+</script>
+</body>
+</html>
